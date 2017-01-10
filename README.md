@@ -119,8 +119,8 @@ address, and the database name and credentials if you have changed them.
 Dashboard import
 ----------------
 
-Now, download our preconfigured dashboard 6WIND\_dashboard.json and
-import it in your grafana.
+Now, download our preconfigured [dashboard](6WIND_dashboard.json) and import it
+in your grafana.
 
 This dashboard contains six rows:
 :   -   Speedometers: display an instant throughput performance on an
