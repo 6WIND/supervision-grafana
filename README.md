@@ -123,18 +123,16 @@ Now, download our preconfigured [dashboard](6WIND_dashboard.json) and import it
 in your grafana.
 
 This dashboard contains six rows:
-:   -   Speedometers: display an instant throughput performance on an
-        interface
-    -   Network: display an history of the throughput performance, on
-        bot TX and RX sides, for all interfaces and a total wave
-    -   CPU occupation: display the linux and fast path CPU occupation.
-        Just choose which CPU is used by linux or the fast path by
-        hidding it or not in the edit metrics menu of each graph
-    -   Memory: display the used RAM in percents
-    -   IPsec SAs: show the number of SA and the creation rate in the
-        linux kernel
-    -   Fast path statistics: show all fast path statistics, exceptions,
-        ...
+
+-   Speedometers: display an instant throughput performance on an interface
+-   Network: display an history of the throughput performance, on both TX and
+    RX sides, for all interfaces and a total wave
+-   CPU occupation: display the linux and fast path CPU occupation. Just
+    choose which CPU is used by linux or the fast path by hidding it or not in
+    the edit metrics menu of each graph
+-   Memory: display the used RAM in percents
+-   IPsec SAs: show the number of SA and the creation rate in the linux kernel
+-   Fast path statistics: show all fast path statistics, exceptions,
 
 Telegraf
 ========
