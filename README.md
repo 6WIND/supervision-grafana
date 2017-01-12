@@ -49,9 +49,7 @@ Run the following command to install InfluxDB:
 > Check the [InfluxDB official
 > documentation](https://docs.influxdata.com/influxdb/v1.1/introduction/installation/).
 
-Check the plugin webpage
-[here](https://grafana.net/plugins/briangann-gauge-panel). Then, run the
-following to create a database:
+Run the following commands to create a database:
 
 ``` {.sourceCode .console}
 # influx -execute 'create database turbodb'
@@ -157,7 +155,7 @@ Use the following commands to download and install the Telegraf agent:
 Then, configure the Telegraf agent in the configuration file located in
 /etc/telegraf/telegraf.conf.
 
-See below an example of configuration file:
+See an example of configuration file: [telegraf.conf](telegraf.conf).
 
 > **warning**
 >
