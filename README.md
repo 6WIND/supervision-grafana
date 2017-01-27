@@ -46,6 +46,11 @@ Run the following command to install InfluxDB:
 
 > **note**
 >
+> Make sure to install the package located in the influxdata repository.
+> ``` {.sourceCode .console}
+> # apt-cache policy influxdb
+> ```
+>
 > Check the [InfluxDB official
 > documentation](https://docs.influxdata.com/influxdb/v1.1/introduction/installation/).
 
