@@ -1,0 +1,14 @@
+#/bin/bash
+# Copyright 2018 6WIND S.A.
+# Tool to start a monitoring testbed.
+#
+# deps: python-requests docker-compose
+
+# Start grafana/influxdb
+docker-compose up -d
+
+# Configure grafana according to conf.yml
+tools/configure_grafana.py
+
+echo
+echo "Go to http://localhost:3000 for Grafana dashboard (admin/admin)"

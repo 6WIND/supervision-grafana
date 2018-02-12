@@ -1,0 +1,23 @@
+{
+  "allValue": null,
+  "current": {
+    "text": "All",
+    "value": "$__all"
+  },
+  "datasource": "${DS_INFLUXDB}",
+  "hide": 2,
+  "includeAll": true,
+  "label": null,
+  "multi": false,
+  "name": "fpcpu",
+  "options": [],
+  "query": "SHOW TAG VALUES FROM \"fp-cpu-usage\" WITH KEY = \"cpu\" WHERE host =~ /$host/",
+  "refresh": 1,
+  "regex": "",
+  "sort": 0,
+  "tagValuesQuery": "",
+  "tags": [],
+  "tagsQuery": "",
+  "type": "query",
+  "useTags": false
+}

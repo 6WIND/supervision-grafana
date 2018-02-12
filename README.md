@@ -1,188 +1,156 @@
-# Supervising 6WIND products with Grafana, InfluxDB and Telegraf
+# Monitoring 6WIND products using Grafana and InfluxDB
 
-The following guide offers a way to supervise and monitor the activity
-of your servers running a 6WIND product. Using only common open source
-tools (Grafana, InfluxDB, Telegraf) and configuration files we provide,
-you will be able to see many runtime information on a web based
-graphical interface:
+This repository contains scripts and dashboards to use with 6WIND products. It uses [docker](https://www.docker.com/) to spawn a monitoring stack, composed of an [InfluxDB](https://docs.influxdata.com/influxdb/) database and a [Grafana](http://docs.grafana.org) monitoring platform connected on a virtual network. Using those scripts, you will be able to see many runtime information on a web based graphical interface.
 
-![image](sample.png)
+Thanks to the strong community around those tools, it will also be simple to add your own metrics to monitor other functions.
 
-![image](sample2.png)
+This document was tested with Ubuntu 16.04 distribution.
 
-Thanks to the strong community around those tools, it will also be
-simple to add your own metrics to monitor other functions.
+Quickstart
+==========
 
-See below the proposal supervision architecture:
+To start the monitoring stack, install the dependencies, clone the repository and simple use the start script:
 
-![image](monitoring_arch.png)
+```console
+# apt-get update
+# apt-get install docker-compose python-requests docker.io
+$ git clone https://github.com/6WIND/supervision-grafana.git
+$ cd supervision-grafana.git
+$ ./start
+Creating network "supervisiongrafana_monitoring" with the default driver
+Pulling influxdb (influxdb:1.4.2)...
+1.4.2: Pulling from library/influxdb
+723254a2c089: Pull complete
+abe15a44e12f: Pull complete
+409a28e3cc3d: Pull complete
+920d0ed5293b: Pull complete
+4e6d61de962a: Pull complete
+5f29e8ea78c9: Pull complete
+b15384258074: Pull complete
+20bbf0e6af28: Pull complete
+Digest: sha256:4b08e5315b198dbd1f1f070fbccb12f258b3219f4f1d85370156fb0bb2b95677
+Status: Downloaded newer image for influxdb:1.4.2
+Pulling grafana (grafana/grafana:4.6.3)...
+4.6.3: Pulling from grafana/grafana
+c6b13209f43b: Pull complete
+a3ed95caeb02: Pull complete
+051738ac6f7e: Pull complete
+66e042ba6513: Pull complete
+Digest: sha256:6397aafb899ef7a9ca61c2ef80863dbebce504620b044954d80203e0b8c1ada4
+Status: Downloaded newer image for grafana/grafana:4.6.3
+Creating influxdb
+Creating grafana
+{"id":1,"message":"Datasource added","name":"influxdb"}
+{"slug":"debug","status":"success","version":1}
+{"slug":"overview","status":"success","version":1}
+{"slug":"router","status":"success","version":1}
 
-This document was tested with Ubuntu 16.04 distribution with the
-following software versions:
-
--   linux distribution: Linux ubuntu1604 4.4.0-47-generic \#68-Ubuntu
-    SMP Wed Oct 26 19:39:52 UTC 2016 x86\_64 x86\_64 x86\_64 GNU/Linux
--   InfluxDB: 1.1.1
--   Grafana: 4.0.2
--   Telegraf: 1.1.1
-
-InfluxDB
-========
-
-InfluxDB is an open source database written specifically to handle time
-series data with high availability and high performance requirements.
-
-Run the following command to install InfluxDB:
-
-``` {.sourceCode .console}
-# curl -sL https://repos.influxdata.com/influxdb.key | apt-key add -
-# echo "deb https://repos.influxdata.com/ubuntu xenial stable" | tee \
-  /etc/apt/sources.list.d/influxdb.list
-# apt-get update && apt-get install influxdb
-
-# systemctl enable influxdb
-# systemctl start influxdb
+Go to http://localhost:3000 for Grafana dashboard (admin/admin)
 ```
 
-> **note**
->
-> Make sure to install the package located in the influxdata repository.
-> ``` {.sourceCode .console}
-> # apt-cache policy influxdb
-> ```
->
-> Check the [InfluxDB official
-> documentation](https://docs.influxdata.com/influxdb/v1.1/introduction/installation/).
+Log as admin/admin to http://monitoring-server-ip:3000.
 
-Run the following commands to create a database:
+Then, on your 6WIND router, enter the CLI to configure the system to send data to the InfluxDB database:
 
-``` {.sourceCode .console}
-# influx -execute 'create database turbodb'
-# influx -execute 'show databases'
-name: databases
-name
-----
-turbodb
-_internal
+```console
+router{conf:myconf}kpi
+router{conf:myconf-kpi}kpi enable
+router{conf:myconf-kpi}telegraf
+router{conf:myconf-kpi-telegraf}telegraf enable
+router{conf:myconf-kpi-telegraf}influxdb
+router{conf:myconf-kpi-telegraf-influxdb}url http://<monitoring-server-ip>:8086
+router{conf:myconf-kpi-telegraf-influxdb}database telegraf
 ```
 
-Grafana
-=======
+The 6WIND router must be able to reach the monitoring server IP.
 
-Grafana is an open source metric analytics and visualization suite. It
-is most commonly used for visualizing time series data for
-infrastructure and application analytics.
+In the Grafana window, you should see monitoring data being graphed.
 
-Installation
-------------
+To stop the monitoring stack:
 
-``` {.sourceCode .console}
-# curl https://packagecloud.io/gpg.key | apt-key add -
-# echo "deb https://packagecloud.io/grafana/stable/debian/ jessie main" | \
-  tee /etc/apt/sources.list.d/grafana.list
-# apt-get update && apt-get install grafana
-
-# systemctl enable grafana-server
-# systemctl start grafana-server
+```console
+$ ./stop
+Stopping grafana ... done
+Stopping influxdb ... done
+Removing grafana ... done
+Removing influxdb ... done
+Removing network supervisiongrafana_monitoring
 ```
 
-> **note**
->
-> Check the [Grafana official
-> documentation](http://docs.grafana.org/installation/debian/).
+How it works
+============
 
-Gauge plugin installation
--------------------------
+The start script uses ``docker-compose`` to instanciate the monitoring stack. It then calls [tools/configure_grafana.py](./tools/configure_grafana.py) to upload dashboards and the InfluxDB datasource using the Grafana web API.
 
-Check the plugin webpage
-[here](https://grafana.net/plugins/briangann-gauge-panel).
+The configuration is located in the [tools/conf.yml](./tools/conf.yml) file.
 
-``` {.sourceCode .console}
-# grafana-cli plugins install briangann-gauge-panel
-installing briangann-gauge-panel @ 0.0.2
-from url: https://grafana.net/api/plugins/briangann-gauge-panel/versions/0.0.2/download
-into: /var/lib/grafana/plugins
+The InfluxDB container uses the ``influxdb/data`` directory to store its database.
 
-+ Installed briangann-gauge-panel successfully
+Using an existing InfluxDB/Grafana installation
+===============================================
 
-Restart grafana after installing plugins . <service grafana-server restart>
+If you already have ``Grafana`` installed, you can use [tools/configure_grafana.py](./tools/configure_grafana.py) directly. You need to configure the [tools/conf.yml](./tools/conf.yml) file to remove the datasources, and make sure that the grafana parameters suit your needs.
 
-# systemctl restart grafana-server
+```yaml
+datasources:
+
+grafana:
+  host: your-grafana-ip
+  port: your-grafana-port
+  user: your-grafana-user
+  password: your-grafana-user
 ```
 
-Data source and panel configuration
------------------------------------
+The generated dashboards currently need the ``InfluxDB`` source to be called 'influxdb'.
 
-Add and configure a new data source as described in the following
-screenshot. Just update the IP address with your supervision server IP
-address, and the database name and credentials if you have changed them.
+Dashboard configuration
+=======================
 
-![image](grafana_data_src.png)
+Here is an example of how an overview dashboard could be defined in conf.yml.
 
-Dashboard import
-----------------
-
-Now, download our preconfigured [dashboard](6WIND_dashboard.json) and import it
-in your grafana.
-
-This dashboard contains six rows:
-
--   Speedometers: display an instant throughput performance on an interface
--   Network: display an history of the throughput performance, on both TX and
-    RX sides, for all interfaces and a total wave
--   CPU occupation: display the linux and fast path CPU occupation. Just
-    choose which CPU is used by linux or the fast path by hidding it or not in
-    the edit metrics menu of each graph
--   Memory: display the used RAM in percents
--   IPsec SAs: show the number of SA and the creation rate in the linux kernel
--   Fast path statistics: show all fast path statistics, exceptions,
-
-Telegraf
-========
-
-Telegraf has to be installed on each server running a 6WIND product. It
-will transmit data to the InfluxDB server.
-
-Use the following commands to download and install the Telegraf agent:
-
-``` {.sourceCode .console}
-# curl -sL https://repos.influxdata.com/influxdb.key | apt-key add -
-# echo "deb https://repos.influxdata.com/ubuntu xenial stable" | \
-  tee /etc/apt/sources.list.d/influxdb.list
-# apt-get update && apt-get install telegraf
+```yaml
+dashboards:
+  overview:
+    enabled: yes
+    title: overview
+    rows:
+      - title: system
+        panels:
+          - base-uptime
+          - base-fp-status
+          - base-ram-usage:
+	      span: 4
+    templating:
+      - file: host
 ```
 
-> **note**
->
-> Check the [Telegraf official
-> documentation](https://docs.influxdata.com/telegraf/v1.1/introduction/installation/).
+This configuration will create an ``overview`` dashboard, containing one row named ``system``. This row contains the ``base-uptime``, ``base-fp-status`` and ``base-ram-usage`` panels. The ``base-ram-usage`` panel size is overriden to fit in ``4`` blocks (note that each row = 12 blocks). The panels are defined in [tools/resources/panels](./tools/resources/panels), and are the result of the ``Grafana`` Panel JSON export feature. A template variable named ``host`` is created as well, defined in [tools/resources/templates/host.json](./tools/resources/templates/host.json).
 
-Then, configure the Telegraf agent in the configuration file located in
-/etc/telegraf/telegraf.conf.
+The available keywords at dashboard level are:
+- ``enabled`` (yes/no): upload the dashboard or not in Grafana
+- ``title`` (string): set the dashboard name
+- ``rows`` (list): describe the dashboard rows
+- ``templating`` (list): describe the dashboard template variables
+- ``inherits`` (dashboard name): use the rows and template variables from another dashboard
 
-See an example of configuration file: [telegraf.conf](telegraf.conf).
+The available keywords at templating level are:
+- ``file`` (string): include this template file in the dashboard
+- ``values`` (list): set the default values for this template file
 
-> **warning**
->
-> Some commands used to get the metrics need root access to be executed.
-> Edit the systemd service file and comment the User line to be able to
-> run fast path commands:
->
-> ``` {.sourceCode .console}
-> # systemctl edit --full telegraf.service
-> ```
+The available keywords at row level are:
+- ``title`` (string): set the row title
+- ``panels`` (list): set the list of panels in this row
+- ``repeat`` (variable): repeat a row for each value of a variable
 
-Now, start the Telegraf agent:
+The only available keyword at panel level is:
+- ``span`` (int): override the number of blocks taken by a panel when displayed (a line has 12 blocks).
 
-``` {.sourceCode .console}
-# systemctl enable telegraf
-# systemctl start telegraf
-```
+Adding a new panel
+==================
 
-> **note**
->
-> You can test your configuration file using the following:
->
-> ``` {.sourceCode .console}
-> # telegraf -config /etc/telegraf/telegraf.conf -test
-> ```
+Adding a new panel means adding a new JSON file describing this panel in the [tools/resources/panels](./tools/resources/panels) directory. There are two ways to generate such file:
+- use an existing panel file and modify it to your needs
+- design the panel in Grafana, click on the panel name, on the button left of
+  'View', and 'Panel JSON', and save the content
+
+Once the file is saved, it can be added to dashboard rows.

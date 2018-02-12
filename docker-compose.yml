@@ -1,0 +1,36 @@
+version: '2'
+services:
+  grafana:
+    # Full tag list: https://hub.docker.com/r/grafana/grafana/tags/
+    image: grafana/grafana:4.6.3
+    container_name: grafana
+    environment:
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    networks:
+      - monitoring
+    links:
+      # Grafana requires network access to InfluxDB
+      - influxdb
+    ports:
+      # The WebUI for grafana is served on port 3000
+      - "3000:3000"
+    depends_on:
+      - influxdb
+  influxdb:
+    # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
+    image: influxdb:1.4.2
+    container_name: influxdb
+    networks:
+      - monitoring
+    volumes:
+      # Mount for influxdb data directory
+      - ./influxdb/data:/var/lib/influxdb
+      # Mount for influxdb configuration
+      - ./influxdb/config/:/etc/influxdb/
+    ports:
+      # The API for InfluxDB is served on port 8086
+      - "8086:8086"
+networks:
+  monitoring:

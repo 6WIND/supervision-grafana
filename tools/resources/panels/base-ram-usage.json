@@ -1,0 +1,123 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "influxdb",
+  "fill": 1,
+  "id": 3,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "total",
+      "dashes": true
+    }
+  ],
+  "spaceLength": 10,
+  "span": 3,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "used",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "system-memory",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT \"total\" - \"available\" FROM \"system-memory\" WHERE $timeFilter AND \"host\" =~ /^$host$/",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "available"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": []
+    },
+    {
+      "alias": "total",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "system-memory",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "total"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "RAM",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "decbytes",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": "0",
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ]
+}

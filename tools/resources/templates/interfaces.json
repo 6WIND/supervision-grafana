@@ -1,0 +1,24 @@
+{
+  "allValue": null,
+  "current": {
+    "tags": [],
+    "text": "All",
+    "value": "$__all"
+  },
+  "datasource": "${DS_INFLUXDB}",
+  "hide": 0,
+  "includeAll": true,
+  "label": null,
+  "multi": false,
+  "name": "interfaces",
+  "options": [],
+  "query": " SHOW TAG VALUES FROM \"network-nic-traffic-stats\" WITH KEY = \"name\" WHERE host =~ /$host/ ",
+  "refresh": 1,
+  "regex": "",
+  "sort": 0,
+  "tagValuesQuery": "",
+  "tags": [],
+  "tagsQuery": "",
+  "type": "query",
+  "useTags": false
+}

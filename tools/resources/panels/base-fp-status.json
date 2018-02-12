@@ -1,0 +1,119 @@
+{
+  "cacheTimeout": null,
+  "colorBackground": false,
+  "colorValue": true,
+  "colors": [
+    "rgba(50, 172, 45, 0.97)",
+    "rgba(237, 129, 40, 0.89)",
+    "rgba(245, 54, 54, 0.9)"
+  ],
+  "datasource": "influxdb",
+  "format": "none",
+  "gauge": {
+    "maxValue": 4,
+    "minValue": 0,
+    "show": false,
+    "thresholdLabels": false,
+    "thresholdMarkers": true
+  },
+  "id": 71,
+  "interval": null,
+  "links": [],
+  "mappingType": 1,
+  "mappingTypes": [
+    {
+      "name": "value to text",
+      "value": 1
+    },
+    {
+      "name": "range to text",
+      "value": 2
+    }
+  ],
+  "maxDataPoints": 100,
+  "nullPointMode": "connected",
+  "nullText": null,
+  "postfix": "",
+  "postfixFontSize": "50%",
+  "prefix": "",
+  "prefixFontSize": "50%",
+  "rangeMaps": [
+    {
+      "from": "null",
+      "text": "N/A",
+      "to": "null"
+    }
+  ],
+  "span": 1,
+  "sparkline": {
+    "fillColor": "rgba(31, 118, 189, 0.18)",
+    "full": false,
+    "lineColor": "rgb(31, 120, 193)",
+    "show": false
+  },
+  "tableColumn": "",
+  "targets": [
+    {
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-status",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": "1,2",
+  "title": "Fast path status",
+  "type": "singlestat",
+  "valueFontSize": "50%",
+  "valueMaps": [
+    {
+      "op": "=",
+      "text": "N/A",
+      "value": "null"
+    },
+    {
+      "op": "=",
+      "text": "bad",
+      "value": "2"
+    },
+    {
+      "op": "=",
+      "text": "stopped",
+      "value": "3"
+    },
+    {
+      "op": "=",
+      "text": "loaded",
+      "value": "1"
+    },
+    {
+      "op": "=",
+      "text": "ok",
+      "value": "0"
+    }
+  ],
+  "valueName": "current"
+}

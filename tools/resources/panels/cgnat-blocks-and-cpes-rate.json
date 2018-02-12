@@ -1,0 +1,218 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "influxdb",
+  "fill": 1,
+  "id": 6,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "hideEmpty": true,
+    "hideZero": true,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "/.*deletion.*/",
+      "transform": "negative-Y"
+    }
+  ],
+  "spaceLength": 10,
+  "span": 4,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "block-creation-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT derivative(\"block-allocations\", 1s) FROM \"fp-npf-stats\" WHERE $timeFilter",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "block-allocations"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "block-deletion-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT derivative(\"block-destructions\", 1s) FROM \"fp-npf-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "block-destructions"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "cpe-creation-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT derivative(\"cpe-allocations\", 1s) FROM \"fp-npf-stats\" WHERE $timeFilter",
+      "rawQuery": false,
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "cpe-allocations"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "cpe-deletion-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT derivative(\"cpe-destructions\", 1s) FROM \"fp-npf-stats\" WHERE $timeFilter",
+      "rawQuery": false,
+      "refId": "D",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "cpe-destructions"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "Block and CPE creation/deletion per seconds",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ]
+}

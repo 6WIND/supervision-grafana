@@ -1,0 +1,124 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "influxdb",
+  "fill": 1,
+  "id": 11,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "/total.*/",
+      "dashes": true
+    }
+  ],
+  "spaceLength": 10,
+  "span": 12,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "$col [$tag_disk]",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "disk"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "system-disk-usage",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT \"total\" - \"free\" as \"used\", \"total\" FROM \"system-disk-usage\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter GROUP BY \"disk\"",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "total - free"
+            ],
+            "type": "field"
+          }
+        ],
+        [
+          {
+            "params": [
+              "total"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "alias"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "Disk usage",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "decimals": null,
+      "format": "decbytes",
+      "label": "",
+      "logBase": 1,
+      "max": null,
+      "min": "0",
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ]
+}

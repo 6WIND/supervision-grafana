@@ -1,0 +1,23 @@
+{
+  "allValue": null,
+  "current": {
+    "tags": [],
+    "value": []
+  },
+  "datasource": "${DS_INFLUXDB}",
+  "hide": 0,
+  "includeAll": false,
+  "label": "Fast path tables",
+  "multi": true,
+  "name": "filling",
+  "options": [],
+  "query": "SHOW FIELD KEYS FROM \"fp-filling\"",
+  "refresh": 1,
+  "regex": "/(.*)-current/",
+  "sort": 0,
+  "tagValuesQuery": "",
+  "tags": [],
+  "tagsQuery": "fp-filling",
+  "type": "query",
+  "useTags": false
+}

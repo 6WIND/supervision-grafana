@@ -1,0 +1,183 @@
+{
+  "columns": [],
+  "datasource": "influxdb",
+  "description": "On the selected time period.",
+  "fontSize": "100%",
+  "hideTimeOverride": false,
+  "id": 6,
+  "links": [],
+  "pageSize": null,
+  "scroll": true,
+  "showHeader": true,
+  "sort": {
+    "col": null,
+    "desc": false
+  },
+  "span": 12,
+  "styles": [
+    {
+      "alias": "Time",
+      "dateFormat": "YYYY-MM-DD HH:mm:ss",
+      "link": false,
+      "pattern": "Time",
+      "preserveFormat": false,
+      "type": "hidden"
+    },
+    {
+      "alias": "driver",
+      "colorMode": null,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "dateFormat": "YYYY-MM-DD HH:mm:ss",
+      "decimals": 2,
+      "pattern": "last",
+      "thresholds": [],
+      "type": "string",
+      "unit": "short"
+    },
+    {
+      "alias": "description",
+      "colorMode": null,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "dateFormat": "YYYY-MM-DD HH:mm:ss",
+      "decimals": 2,
+      "pattern": "last_1",
+      "thresholds": [],
+      "type": "string",
+      "unit": "short"
+    },
+    {
+      "alias": "model",
+      "colorMode": null,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "dateFormat": "YYYY-MM-DD HH:mm:ss",
+      "decimals": 2,
+      "link": false,
+      "pattern": "last_2",
+      "sanitize": false,
+      "thresholds": [],
+      "type": "string",
+      "unit": "short"
+    },
+    {
+      "alias": "pci",
+      "colorMode": null,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "dateFormat": "YYYY-MM-DD HH:mm:ss",
+      "decimals": 2,
+      "pattern": "last_3",
+      "thresholds": [],
+      "type": "number",
+      "unit": "short"
+    },
+    {
+      "alias": "",
+      "colorMode": null,
+      "colors": [
+        "rgba(245, 54, 54, 0.9)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(50, 172, 45, 0.97)"
+      ],
+      "decimals": 2,
+      "pattern": "/.*/",
+      "thresholds": [],
+      "type": "number",
+      "unit": "short"
+    }
+  ],
+  "targets": [
+    {
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "name"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "network-nic-hw-info",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT last(\"driver\"), last(\"model\"),last(\"pci-address\")\n FROM \"network-nic-hw-info\" WHERE \"host\" =~ /^$host$/ GROUP BY \"name\"",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "driver"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          }
+        ],
+        [
+          {
+            "params": [
+              "description"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          }
+        ],
+        [
+          {
+            "params": [
+              "model"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          }
+        ],
+        [
+          {
+            "params": [
+              "pci-address"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "title": "Network interfaces",
+  "transform": "table",
+  "type": "table"
+}

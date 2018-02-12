@@ -1,0 +1,218 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "influxdb",
+  "description": "",
+  "fill": 1,
+  "id": 5,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "/.*deletion.*/",
+      "transform": "negative-Y"
+    }
+  ],
+  "spaceLength": 10,
+  "span": 6,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "conntrack-creation-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT state  FROM (SELECT derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-npf-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "state-allocations"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "conntrack-deletion-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT state FROM (SELECT derivative(\"state-destructions\", 1s) as \"state\" FROM \"fp-npf-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "state-destructions"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "nat-creation-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT nat FROM (SELECT derivative(\"nat-allocations\", 1s) as \"nat\" FROM \"fp-npf-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "nat-allocations"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "nat-deletion-rate",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-npf-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT nat FROM (SELECT derivative(\"nat-destructions\", 1s) as \"nat\" FROM \"fp-npf-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "D",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "nat-destructions"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "Session creation/deletion per seconds",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ]
+}

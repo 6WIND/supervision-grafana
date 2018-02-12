@@ -1,0 +1,318 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "influxdb",
+  "fill": 1,
+  "id": 1,
+  "legend": {
+    "alignAsTable": false,
+    "avg": false,
+    "current": false,
+    "hideZero": false,
+    "max": false,
+    "min": false,
+    "rightSide": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "repeat": "interfaces",
+  "seriesOverrides": [
+    {
+      "alias": "/sent.*/",
+      "transform": "negative-Y"
+    },
+    {
+      "alias": "/sent-speed.*/",
+      "dashes": true,
+      "legend": false
+    },
+    {
+      "alias": "/recv-speed.*/",
+      "dashes": true,
+      "legend": false
+    }
+  ],
+  "spaceLength": 10,
+  "span": 12,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "recv [$tag_name]",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "name"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "network-nic-traffic-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "bytes-recv"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          },
+          {
+            "params": [
+              "* 8"
+            ],
+            "type": "math"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$interfaces$/"
+        },
+        {
+          "condition": "AND",
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "alias": "sent [$tag_name]",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "name"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "network-nic-traffic-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "rawQuery": false,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "bytes-sent"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          },
+          {
+            "params": [
+              "* 8"
+            ],
+            "type": "math"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$interfaces$/"
+        }
+      ]
+    },
+    {
+      "alias": "$col [$tag_name]",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "name"
+          ],
+          "type": "tag"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-nic-hw-info",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "speed"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "* 8"
+            ],
+            "type": "math"
+          },
+          {
+            "params": [
+              "recv-speed"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$interfaces$/"
+        }
+      ]
+    },
+    {
+      "alias": "$col [$tag_name]",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "name"
+          ],
+          "type": "tag"
+        },
+        {
+          "params": [
+            "previous"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-nic-hw-info",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "rawQuery": false,
+      "refId": "D",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "speed"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "* 8"
+            ],
+            "type": "math"
+          },
+          {
+            "params": [
+              "sent-speed"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$interfaces$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "$interfaces",
+  "tooltip": {
+    "shared": true,
+    "sort": 1,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "decimals": null,
+      "format": "bps",
+      "label": "",
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "scopedVars": {
+    "interfaces": {
+      "text": "ntfp1",
+      "value": "ntfp1",
+      "selected": true
+    }
+  }
+}
