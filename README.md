@@ -119,7 +119,7 @@ dashboards:
           - base-uptime
           - base-fp-status
           - base-ram-usage:
-	      span: 4
+            span: 4
     templating:
       - file: host
 ```
