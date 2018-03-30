@@ -1,8 +1,10 @@
 #!/usr/bin/env python2
 # Copyright 2018 6WIND S.A.
 
+import argparse
 import json
 import os
+import sys
 import time
 import yaml
 
@@ -81,6 +83,7 @@ def generate_dashboard(name, dashboards, datasource):
             panel_data = {}
             panel_dir = os.path.join(resource_dir, 'panels')
             panel_file_path = os.path.join(panel_dir, panel_name + '.json')
+
             with open(panel_file_path) as panel_file:
                 panel_data = json.load(panel_file)
 
@@ -204,9 +207,14 @@ def main():
     """
     Main.
     """
-    conf_file_path = os.path.join(os.path.dirname(__file__), 'conf.yml')
+    parser = argparse.ArgumentParser(description='Configure grafana')
+    parser.add_argument('configuration',
+                        metavar='FILE',
+                        help='Specify the configuration to load from confs directory')
 
-    config = get_config(conf_file_path)
+    args = parser.parse_args()
+
+    config = get_config(args.configuration)
     session = get_grafana_session(config)
 
     default_datasource = upload_datasources(session, config)

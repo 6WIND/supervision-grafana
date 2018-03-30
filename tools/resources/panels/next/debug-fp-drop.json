@@ -1,0 +1,110 @@
+{
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "datasource": "influxdb",
+  "fill": 1,
+  "id": 4,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "hideEmpty": true,
+    "hideZero": true,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "percentage": false,
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "span": 3,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-global-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT difference(/.*fp_dropped*/) AS \"_\" FROM \"fp-global-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": true,
+      "refId": "A",
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "*"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "_"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeShift": null,
+  "title": "FP drop stats",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ]
+}
