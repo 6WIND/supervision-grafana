@@ -5,10 +5,12 @@
   "dashes": false,
   "datasource": "influxdb",
   "fill": 1,
-  "id": 2,
+  "id": 9,
   "legend": {
     "avg": false,
     "current": false,
+    "hideEmpty": true,
+    "hideZero": true,
     "max": false,
     "min": false,
     "show": true,
@@ -23,96 +25,80 @@
   "pointradius": 5,
   "points": false,
   "renderer": "flot",
-  "seriesOverrides": [],
+  "seriesOverrides": [
+    {
+      "alias": "/.*deletion.*/",
+      "transform": "negative-Y"
+    }
+  ],
   "spaceLength": 10,
   "span": 4,
   "stack": false,
   "steppedLine": false,
   "targets": [
     {
-      "alias": "conntrack",
+      "alias": "$col",
       "dsType": "influxdb",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "null"
-          ],
-          "type": "fill"
-        }
-      ],
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-cg-nat-stats",
       "orderByTime": "ASC",
       "policy": "default",
-      "query": "SELECT state FROM (SELECT \"state-allocations\" - \"state-destructions\" as \"state\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/)  AND $timeFilter) \n",
-      "rawQuery": true,
+      "query": "SELECT derivative(\"state-allocation-failures\", 1s) FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": false,
       "refId": "A",
       "resultFormat": "time_series",
       "select": [
         [
           {
             "params": [
-              "value"
+              "state-allocation-failures"
             ],
             "type": "field"
           },
           {
             "params": [],
-            "type": "mean"
+            "type": "difference"
+          },
+          {
+            "params": [
+              "state-allocation-failures"
+            ],
+            "type": "alias"
           }
-        ]
-      ],
-      "tags": []
-    },
-    {
-      "alias": "nat",
-      "dsType": "influxdb",
-      "groupBy": [
-        {
-          "params": [
-            "$__interval"
-          ],
-          "type": "time"
-        },
-        {
-          "params": [
-            "null"
-          ],
-          "type": "fill"
-        }
-      ],
-      "hide": false,
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT nat FROM (SELECT \"nat-allocations\" - \"nat-destructions\" as \"nat\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/)  AND $timeFilter)\n",
-      "rawQuery": true,
-      "refId": "B",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
             "params": [
-              "value"
+              "nat-allocation-failures"
             ],
             "type": "field"
           },
           {
             "params": [],
-            "type": "mean"
+            "type": "difference"
+          },
+          {
+            "params": [
+              "nat-allocation-failures"
+            ],
+            "type": "alias"
           }
         ]
       ],
-      "tags": []
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
     }
   ],
   "thresholds": [],
   "timeFrom": null,
   "timeShift": null,
-  "title": "Sessions",
+  "title": "Sessions allocation error",
   "tooltip": {
     "shared": true,
     "sort": 0,
