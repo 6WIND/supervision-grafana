@@ -99,6 +99,13 @@ dashboards:
     inherits: base
     enabled: yes
     title: cg-nat
+    templating:
+      - file: filling
+        values:
+          - cgnat-conntracks
+          - cgnat-nats
+          - cgnat-cpes
+          - cgnat-blocks
     rows:
       - title: Processes
         panels:
@@ -107,6 +114,9 @@ dashboards:
       - title: Disks
         panels:
           - base-disk-usage
+      - title: Fp Filling
+        panels:
+          - base-filling-pie-repeat
       - title: Blocks and CPEs
         panels:
           - cgnat-blocks-and-cpes

@@ -1,0 +1,70 @@
+{
+  "aliasColors": {},
+  "cacheTimeout": null,
+  "combine": {
+    "label": "Others",
+    "threshold": 0
+  },
+  "datasource": "influxdb",
+  "fontSize": "80%",
+  "format": "none",
+  "id": 72,
+  "interval": null,
+  "legend": {
+    "percentage": false,
+    "show": true,
+    "values": true
+  },
+  "legendType": "On graph",
+  "links": [],
+  "maxDataPoints": 3,
+  "nullPointMode": "connected",
+  "pieType": "pie",
+  "repeat": "filling",
+  "span": 3,
+  "minSpan": 2,
+  "strokeWidth": 1,
+  "targets": [
+    {
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-filling",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT \"$filling-current\" as current , (\"$filling-max\" - \"$filling-current\") as remaining  FROM \"fp-filling\" WHERE $timeFilter",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "bridge-fdb-current"
+            ],
+            "type": "field"
+          }
+        ],
+        [
+          {
+            "params": [
+              "bridge-fdb-max"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": []
+    }
+  ],
+  "title": "$filling",
+  "type": "grafana-piechart-panel",
+  "valueName": "current",
+  "scopedVars": {
+    "filling": {
+      "text": "bridge-fdb",
+      "value": "bridge-fdb",
+      "selected": true
+    }
+  }
+}

@@ -128,7 +128,17 @@ dashboards:
     inherits: base
     enabled: yes
     title: cgnat
+    templating:
+      - file: filling
+        values:
+          - cgnat-conntracks
+          - cgnat-nats
+          - cgnat-cpes
+          - cgnat-blocks
     rows:
+      - title: Fp Filling
+        panels:
+          - base-filling-pie-repeat
       - title: Blocks and CPEs
         panels:
           - cgnat-blocks-and-cpes
