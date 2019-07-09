@@ -9,8 +9,6 @@
   "legend": {
     "avg": false,
     "current": false,
-    "max": true,
-    "min": true,
     "show": true,
     "total": false,
     "values": true
