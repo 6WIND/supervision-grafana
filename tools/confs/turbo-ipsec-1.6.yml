@@ -28,7 +28,7 @@ dashboards:
           - base-uptime
           - base-fp-status
           - overview-version
-          - overview-license
+          - old/overview-license
           - base-ram-usage:
               span: 2
           - base-linux-cpu-usage:
