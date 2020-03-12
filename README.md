@@ -16,7 +16,7 @@ To start the monitoring stack, install the dependencies, clone the repository an
 # apt-get install docker-compose python-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana.git
-$ ./start tools/confs/turbo-router-1.6.yml
+$ ./start tools/confs/vrouter-3.0.yml
 Creating network "supervisiongrafana_monitoring" with the default driver
 Pulling influxdb (influxdb:1.4.2)...
 1.4.2: Pulling from library/influxdb
@@ -53,13 +53,10 @@ Log as admin/admin to http://monitoring-server-ip:3000.
 Then, on your 6WIND product, enter the CLI to configure the system to send data to the InfluxDB database:
 
 ```console
-router{conf:myconf}kpi
-router{conf:myconf-kpi}kpi enable
-router{conf:myconf-kpi}telegraf
-router{conf:myconf-kpi-telegraf}telegraf enable
-router{conf:myconf-kpi-telegraf}influxdb
-router{conf:myconf-kpi-telegraf-influxdb}url http://<monitoring-server-ip>:8086
-router{conf:myconf-kpi-telegraf-influxdb}database telegraf
+vrouter> edit running
+vrouter running config# system kpi
+vrouter running kpi# / vrf main kpi telegraf influxdb-output url http://<monitoring-server-ip>:8086 database telegraf
+vrouter running kpi# commit
 ```
 
 The 6WIND product must be able to reach the monitoring server IP.
@@ -84,6 +81,7 @@ The list of this existing configuration files can be listed by simply called the
 $ ./start
 Usage: ./start [conf_file]
 Existing configuration file are:
+./tools/confs/vrouter-3.0.yml
 ./tools/confs/turbo-ipsec-next.yml
 ./tools/confs/turbo-router-next.yml
 ./tools/confs/turbo-ipsec-1.6.yml
