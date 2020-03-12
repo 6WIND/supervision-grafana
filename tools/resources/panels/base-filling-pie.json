@@ -31,7 +31,7 @@
       "measurement": "fp-filling",
       "orderByTime": "ASC",
       "policy": "default",
-      "query": "SELECT \"$filling-current\" as current , (\"$filling-max\" - \"$filling-current\") as remaining  FROM \"fp-filling\" WHERE $timeFilter",
+      "query": "SELECT \"$filling-current\" as current , (\"$filling-max\" - \"$filling-current\") as remaining  FROM \"fp-filling\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
       "rawQuery": true,
       "refId": "A",
       "resultFormat": "time_series",
