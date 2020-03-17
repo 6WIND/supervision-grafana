@@ -15,7 +15,7 @@ To start the monitoring stack, install the dependencies, clone the repository an
 # apt-get update
 # apt-get install docker-compose python-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
-$ cd supervision-grafana.git
+$ cd supervision-grafana
 $ ./start tools/confs/vrouter-3.0.yml
 Creating network "supervisiongrafana_monitoring" with the default driver
 Pulling influxdb (influxdb:1.4.2)...
