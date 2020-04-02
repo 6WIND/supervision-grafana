@@ -79,8 +79,8 @@
       "tags": [
         {
           "key": "host",
-          "operator": "=",
-          "value": "dut-vm"
+          "operator": "=~",
+          "value": "/^$host$/"
         }
       ]
     }
