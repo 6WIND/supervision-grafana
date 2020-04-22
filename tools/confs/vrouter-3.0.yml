@@ -47,6 +47,7 @@ dashboards:
         repeat: host
     templating:
       - file: hosts
+      - file: fpcpus
 
   debug:
     enabled: yes
