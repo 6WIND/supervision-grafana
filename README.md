@@ -48,6 +48,10 @@ Creating grafana
 Go to http://localhost:3000 for Grafana dashboard (admin/admin)
 ```
 
+Note: depending on default the version of python on your system (/usr/bin/env
+python), a different ``requests`` package needs to be installed. For python3,
+install python3-requests, and for python2, install python-requests.
+
 Log as admin/admin to http://monitoring-server-ip:3000.
 
 Then, on your 6WIND product, enter the CLI to configure the system to send data to the InfluxDB database:

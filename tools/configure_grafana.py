@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # Copyright 2018 6WIND S.A.
 
 import argparse
@@ -76,7 +76,7 @@ def generate_dashboard(name, dashboards, datasource):
         for panel in row['panels']:
             # panel can contain the file name or a dict
             if isinstance(panel, dict):
-                panel_name = panel.keys()[0]
+                panel_name = list(panel.keys())[0]
             else:
                 panel_name = panel
 
@@ -152,7 +152,7 @@ def get_grafana_session(config):
             tries -= 1
             time.sleep(2)
             if tries == 0:
-                print connection_error
+                print(connection_error)
                 exit(1)
 
     return session
@@ -165,7 +165,7 @@ def upload_datasources(session, config):
     default_datasource = 'influxdb'
 
     if 'datasources' in config and config['datasources']:
-        for datasource in config['datasources'].itervalues():
+        for datasource in config['datasources'].values():
             if not datasource['enabled']:
                 continue
 
@@ -179,7 +179,7 @@ def upload_datasources(session, config):
                 data=json.dumps(datasource),
                 headers={'content-type': 'application/json'}
             )
-            print datasources_post.text
+            print(datasources_post.text)
 
     return default_datasource
 
@@ -188,7 +188,7 @@ def upload_dashboards(session, config, default_datasource):
     """
     Upload dashboards found in configuration to grafana.
     """
-    for name, dashboard in config['dashboards'].iteritems():
+    for name, dashboard in config['dashboards'].items():
         if not dashboard['enabled']:
             continue
 
@@ -200,7 +200,7 @@ def upload_dashboards(session, config, default_datasource):
             data=json.dumps({'dashboard': data}),
             headers={'content-type': 'application/json'},
         )
-        print dashboard_post.text
+        print(dashboard_post.text)
 
 #------------------------------------------------------------------------------
 def main():
