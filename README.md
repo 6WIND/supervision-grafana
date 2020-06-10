@@ -12,9 +12,10 @@ Quickstart
 To start the monitoring stack, install the dependencies, clone the repository
 and simple use the start script by giving the configuration file to use.
 
-Depending on default the version of python on your system (/usr/bin/env python),
-a different ``requests`` package needs to be installed. For python3, install
-python3-requests, and for python2, install python-requests.
+Depending on the default version of python on your system (obtained by
+``/usr/bin/env python``), a different ``requests`` package needs to be
+installed. For python3, install ``python3-requests``, and for python2, install
+``python-requests``.
 
 ```console
 # apt-get update
