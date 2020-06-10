@@ -9,7 +9,12 @@ This document was tested with Ubuntu 16.04 distribution.
 Quickstart
 ==========
 
-To start the monitoring stack, install the dependencies, clone the repository and simple use the start script by giving the configuration file to use:
+To start the monitoring stack, install the dependencies, clone the repository
+and simple use the start script by giving the configuration file to use.
+
+Depending on default the version of python on your system (/usr/bin/env python),
+a different ``requests`` package needs to be installed. For python3, install
+python3-requests, and for python2, install python-requests.
 
 ```console
 # apt-get update
@@ -47,10 +52,6 @@ Creating grafana
 
 Go to http://localhost:3000 for Grafana dashboard (admin/admin)
 ```
-
-Note: depending on default the version of python on your system (/usr/bin/env
-python), a different ``requests`` package needs to be installed. For python3,
-install python3-requests, and for python2, install python-requests.
 
 Log as admin/admin to http://monitoring-server-ip:3000.
 
