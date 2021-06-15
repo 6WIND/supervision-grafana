@@ -2,7 +2,7 @@
 # Copyright 2018 6WIND S.A.
 # Tool to start a monitoring testbed.
 #
-# deps: python-requests docker-compose
+# deps: python-requests3 docker-compose
 
 CONF_DIR="./tools/confs"
 

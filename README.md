@@ -19,7 +19,7 @@ installed. For python3, install ``python3-requests``, and for python2, install
 
 ```console
 # apt-get update
-# apt-get install docker-compose python-requests docker.io
+# apt-get install docker-compose python3-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana
 $ ./start tools/confs/vrouter-3.0.yml
