@@ -97,12 +97,12 @@
     {
       "op": "=",
       "text": "bad",
-      "value": "2"
+      "value": "3"
     },
     {
       "op": "=",
       "text": "stopped",
-      "value": "3"
+      "value": "2"
     },
     {
       "op": "=",
