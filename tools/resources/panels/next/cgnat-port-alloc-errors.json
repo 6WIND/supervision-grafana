@@ -94,6 +94,24 @@
             ],
             "type": "alias"
           }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "state-only-one-nat"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "state-only-one-nat"
+            ]
+          }
         ]
       ],
       "tags": [

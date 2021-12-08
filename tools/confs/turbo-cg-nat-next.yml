@@ -130,7 +130,7 @@ dashboards:
       - title: Sessions Errors
         panels:
           - next/cgnat-invalid-packets
-          - cgnat-port-alloc-errors
+          - next/cgnat-port-alloc-errors
       - title: Packets stats
         panels:
           - next/cgnat-hairpinning-stats
