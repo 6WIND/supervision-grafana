@@ -126,7 +126,7 @@ dashboards:
         panels:
           - cgnat-sessions
           - cgnat-sessions-rate
-          - cgnat-sessions-alloc-errors
+          - next/cgnat-sessions-alloc-errors
       - title: Sessions Errors
         panels:
           - next/cgnat-invalid-packets

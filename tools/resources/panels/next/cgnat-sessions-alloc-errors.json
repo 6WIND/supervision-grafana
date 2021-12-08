@@ -42,7 +42,7 @@
       "measurement": "fp-cg-nat-stats",
       "orderByTime": "ASC",
       "policy": "default",
-      "query": "SELECT derivative(\"state-allocation-failures\", 1s) FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "query": "SELECT difference(\"state-allocation-failures\") AS \"state-allocation-failures\", difference(\"nat-allocation-failures\") AS \"nat-allocation-failures\", difference(\"cpe-too-many-connections\") AS \"cpe-too-many-connections\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
       "rawQuery": false,
       "refId": "A",
       "resultFormat": "time_series",
@@ -81,6 +81,24 @@
               "nat-allocation-failures"
             ],
             "type": "alias"
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "cpe-too-many-connections"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "cpe-too-many-connections"
+            ]
           }
         ]
       ],
