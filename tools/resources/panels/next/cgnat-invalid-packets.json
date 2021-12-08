@@ -55,6 +55,44 @@
         ]
       ],
       "tags": []
+    },
+    {
+      "alias": "$col",
+      "groupBy": [],
+      "measurement": "fp-cg-nat-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "nat64-dropped-udp-null-checksum-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "nat64-dropped-udp-null-checksum-packets"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ],
+      "query": "SELECT difference(\"nat64-dropped-udp-null-checksum-packets\") AS \"nat64-dropped-udp-null-checksum-packets\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false
     }
   ],
   "thresholds": [],

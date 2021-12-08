@@ -151,7 +151,7 @@ dashboards:
           - cgnat-sessions-alloc-errors
       - title: Sessions Errors
         panels:
-          - cgnat-invalid-packets
+          - next/cgnat-invalid-packets
           - cgnat-port-alloc-errors
       - title: Packets stats
         panels:
