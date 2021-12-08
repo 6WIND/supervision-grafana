@@ -153,6 +153,12 @@ dashboards:
         panels:
           - cgnat-invalid-packets
           - cgnat-port-alloc-errors
+      - title: Packets stats
+        panels:
+          - next/cgnat-hairpinning-stats
+          - next/cgnat-passed-packets
+          - next/cgnat-blocked-packets
+          - next/cgnat-packet-race-cases
 
 datasources:
    influxdb:

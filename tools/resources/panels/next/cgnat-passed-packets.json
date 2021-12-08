@@ -1,0 +1,157 @@
+{
+  "datasource": "influxdb",
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "description": "",
+  "fill": 1,
+  "fillGradient": 0,
+  "gridPos": {
+    "x": 8,
+    "y": 72,
+    "w": 8,
+    "h": 7
+  },
+  "hiddenSeries": false,
+  "id": 21,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "nullPointMode": "null",
+  "options": {
+    "dataLinks": []
+  },
+  "percentage": false,
+  "pointradius": 2,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "$col",
+      "groupBy": [],
+      "measurement": "fp-cg-nat-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT difference(\"default-passed-packets\") AS \"default-passed-packets\", difference(\"ruleset-passed-packets\") AS \"ruleset-passed-packets\", difference(\"state-passed-packets\") AS \"state-passed-packets\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "default-passed-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "default-passed-packets"
+            ],
+            "type": "alias"
+          }
+        ],
+        [
+          {
+            "params": [
+              "ruleset-passed-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "ruleset-passed-packets"
+            ],
+            "type": "alias"
+          }
+        ],
+        [
+          {
+            "params": [
+              "state-passed-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "state-passed-packets"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeRegions": [],
+  "timeShift": null,
+  "title": "Passed packets",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  }
+}
