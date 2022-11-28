@@ -78,8 +78,6 @@ dashboards:
       - title: FP to Linux
         panels:
           - debug-fp-exceptions
-          - debug-fp-exception-queues
-          - debug-fp-dpvi
       - title: FP isolation
         panels:
           - debug-fp-context-switch
