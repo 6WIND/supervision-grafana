@@ -22,34 +22,38 @@ installed. For python3, install ``python3-requests``, and for python2, install
 # apt-get install docker-compose python3-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana
-$ ./start tools/confs/vrouter-3.0.yml
-Creating network "supervisiongrafana_monitoring" with the default driver
-Pulling influxdb (influxdb:1.4.2)...
-1.4.2: Pulling from library/influxdb
-723254a2c089: Pull complete
-abe15a44e12f: Pull complete
-409a28e3cc3d: Pull complete
-920d0ed5293b: Pull complete
-4e6d61de962a: Pull complete
-5f29e8ea78c9: Pull complete
-b15384258074: Pull complete
-20bbf0e6af28: Pull complete
-Digest: sha256:4b08e5315b198dbd1f1f070fbccb12f258b3219f4f1d85370156fb0bb2b95677
-Status: Downloaded newer image for influxdb:1.4.2
-Pulling grafana (grafana/grafana:4.6.3)...
-4.6.3: Pulling from grafana/grafana
-c6b13209f43b: Pull complete
-a3ed95caeb02: Pull complete
-051738ac6f7e: Pull complete
-66e042ba6513: Pull complete
-Digest: sha256:6397aafb899ef7a9ca61c2ef80863dbebce504620b044954d80203e0b8c1ada4
-Status: Downloaded newer image for grafana/grafana:4.6.3
-Creating influxdb
-Creating grafana
-{"id":1,"message":"Datasource added","name":"influxdb"}
-{"slug":"debug","status":"success","version":1}
-{"slug":"overview","status":"success","version":1}
-{"slug":"router","status":"success","version":1}
+$ ./start tools/confs/vsr-3.5.yml
+Creating network "supervision-grafana_monitoring" with the default driver
+Pulling influxdb (influxdb:1.7.10)...
+1.7.10: Pulling from library/influxdb
+16cf3fa6cb11: Pull complete
+3ddd031622b3: Pull complete
+69c3fcab77df: Pull complete
+25737831bed1: Pull complete
+f7cb4946ee1e: Pull complete
+1620e475f8f1: Pull complete
+1cf7b9d4576e: Pull complete
+f8d2c0a67069: Pull complete
+Digest: sha256:d1f588db9e015e304ee5174322655e193b3706db947c9b3205b01dbba97794c8
+Status: Downloaded newer image for influxdb:1.7.10
+Pulling grafana (grafana/grafana:6.6.2)...
+6.6.2: Pulling from grafana/grafana
+4167d3e14976: Pull complete
+f5de5b425a84: Pull complete
+0566de8a7966: Pull complete
+21558318b453: Pull complete
+9c0705e53d50: Pull complete
+0cb366e38dc9: Pull complete
+9d6a49548b66: Pull complete
+6a9f63007f4a: Pull complete
+Digest: sha256:4282e80b18bb148dcc9745a337c7008d4c8397b369933cfb4e66d15f363d1818
+Status: Downloaded newer image for grafana/grafana:6.6.2
+Creating influxdb ... done
+Creating grafana  ... done
+{"id":1,"slug":"debug","status":"success" "version":1}
+{"id":2,"slug":"overview","status":"success", "version":1}
+{"id":3,"slug":"cg-nat","status":"success", "version":1}
+{"id":4,"slug":"router","status":"success", "version":1}
 
 Go to http://localhost:3000 for Grafana dashboard (admin/admin)
 ```
