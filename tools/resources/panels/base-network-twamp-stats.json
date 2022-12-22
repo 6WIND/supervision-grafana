@@ -1,0 +1,891 @@
+{
+  "datasource": "influxdb",
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "description": "TWAMP session statistics",
+  "fill": 1,
+  "fillGradient": 0,
+  "gridPos": {
+    "x": 0,
+    "y": 4,
+    "w": 6,
+    "h": 7
+  },
+  "hiddenSeries": false,
+  "id": 13,
+  "legend": {
+    "alignAsTable": true,
+    "avg": false,
+    "current": true,
+    "max": true,
+    "min": true,
+    "rightSide": false,
+    "show": true,
+    "total": false,
+    "values": true
+  },
+  "lines": true,
+  "linewidth": 1,
+  "maxPerRow": null,
+  "nullPointMode": "connected",
+  "options": {
+    "dataLinks": []
+  },
+  "percentage": false,
+  "pointradius": 2,
+  "points": false,
+  "renderer": "flot",
+  "repeat": "twamp_sessions",
+  "repeatDirection": "h",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "send-delay-min",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "send-delay-minimum"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "send-delay-average",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "send-delay-average"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "send-delay-median",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "send-delay-median"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "send-delay-maximum",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "D",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "send-delay-maximum"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "reflect-delay-minimum",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "E",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "reflect-delay-minimum"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "reflect-delay-average",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "F",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "reflect-delay-average"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "reflect-delay-median",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "G",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "reflect-delay-median"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "reflect-delay-maximum",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "H",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "reflect-delay-maximum"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "round-trip-delay-minimum",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "I",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "round-trip-delay-minimum"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "round-trip-delay-average",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "J",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "round-trip-delay-average"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "round-trip-delay-median",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "K",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "round-trip-delay-median"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "round-trip-delay-maximum",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "L",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "round-trip-delay-maximum"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "send-jitter-average",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "M",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "send-jitter-average"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "send-jitter-median",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "N",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "send-jitter-median"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "reflect-jitter-average",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "O",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "reflect-jitter-average"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "reflect-jitter-median",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "P",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "reflect-jitter-median"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "round-trip-jitter-average",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "Q",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "round-trip-jitter-average"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    },
+    {
+      "alias": "round-trip-jitter-median",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-twamp-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT mean(\"reflect-delay-maximum\") FROM \"network-twamp-stats\" WHERE (\"name\" =~ /^$twamp_sessions$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+      "rawQuery": false,
+      "refId": "R",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "round-trip-jitter-median"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "name",
+          "operator": "=~",
+          "value": "/^$twamp_sessions$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeFrom": null,
+  "timeRegions": [],
+  "timeShift": null,
+  "title": "session: $twamp_sessions",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "ms",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "scopedVars": {
+    "twamp_sessions": {
+      "text": "foo-main",
+      "value": "foo-main",
+      "selected": false
+    }
+  }
+}

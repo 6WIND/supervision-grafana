@@ -1,0 +1,24 @@
+{
+    "allValue": null,
+    "current": {
+      "tags": [],
+      "text": "All",
+      "value": "$__all"
+    },
+    "datasource": "${DS_INFLUXDB}",
+    "hide": 0,
+    "includeAll": true,
+    "label": "TWAMP sessions",
+    "multi": false,
+    "name": "twamp_sessions",
+    "options": [],
+    "query": " SHOW TAG VALUES FROM \"network-twamp-stats\" WITH KEY = \"name\"",
+    "refresh": 1,
+    "regex": "",
+    "sort": 0,
+    "tagValuesQuery": "",
+    "tags": [],
+    "tagsQuery": "",
+    "type": "query",
+    "useTags": false
+  }

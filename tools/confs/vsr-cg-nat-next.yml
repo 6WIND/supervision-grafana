@@ -14,10 +14,12 @@ dashboards:
         panels:
           - base-network-nic-info
           - base-network-traffic
+          - base-network-twamp-stats
     templating:
       - file: host
       - file: fpcpus
       - file: interfaces
+      - file: twamp-sessions
 
   overview:
     enabled: yes
