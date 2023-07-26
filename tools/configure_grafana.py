@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2018 6WIND S.A.
 
 import argparse
@@ -111,7 +111,7 @@ def get_config(conf_file_path):
     Parse the yaml configuration file into a dict.
     """
     with open(conf_file_path, 'r') as conf_file:
-        config = yaml.load(conf_file)
+        config = yaml.safe_load(conf_file)
 
     return config
 

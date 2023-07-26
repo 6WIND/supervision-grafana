@@ -4,18 +4,13 @@ This repository contains scripts and dashboards to use with 6WIND products. It u
 
 Thanks to the strong community around those tools, it will also be simple to add your own metrics to monitor other functions.
 
-This document was tested with Ubuntu 16.04 distribution.
+This document was tested with Ubuntu 22.04 distribution.
 
 Quickstart
 ==========
 
 To start the monitoring stack, install the dependencies, clone the repository
 and simple use the start script by giving the configuration file to use.
-
-Depending on the default version of python on your system (obtained by
-``/usr/bin/env python``), a different ``requests`` package needs to be
-installed. For python3, install ``python3-requests``, and for python2, install
-``python-requests``.
 
 ```console
 # apt-get update
@@ -50,10 +45,11 @@ Digest: sha256:4282e80b18bb148dcc9745a337c7008d4c8397b369933cfb4e66d15f363d1818
 Status: Downloaded newer image for grafana/grafana:6.6.2
 Creating influxdb ... done
 Creating grafana  ... done
-{"id":1,"slug":"debug","status":"success" "version":1}
-{"id":2,"slug":"overview","status":"success", "version":1}
-{"id":3,"slug":"cg-nat","status":"success", "version":1}
-{"id":4,"slug":"router","status":"success", "version":1}
+{"datasource":{"id":1,"orgId":1,"name":"influxdb","type":"influxdb","typeLogoUrl":"","access":"proxy","url":"http://influxdb:8086","password":"","user":"","database":"telegraf","basicAuth":false,"basicAuthUser":"","basicAuthPassword":"","withCredentials":false,"isDefault":true,"jsonData":{},"secureJsonFields":{},"version":1,"readOnly":false},"id":1,"message":"Datasource added","name":"influxdb"}
+{"id":1,"slug":"overview","status":"success","uid":"HdvzZh3Vz","url":"/d/HdvzZh3Vz/overview","version":1}
+{"id":2,"slug":"debug","status":"success","uid":"E5vkWh3Vz","url":"/d/E5vkWh3Vz/debug","version":1}
+{"id":3,"slug":"cg-nat","status":"success","uid":"RhDzZh3Vk","url":"/d/RhDzZh3Vk/cg-nat","version":1}
+{"id":4,"slug":"router","status":"success","uid":"OAvkWh34z","url":"/d/OAvkWh34z/router","version":1}
 
 Go to http://localhost:3000 for Grafana dashboard (admin/admin)
 ```
