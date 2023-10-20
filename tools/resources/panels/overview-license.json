@@ -1,57 +1,14 @@
 {
-  "datasource": "influxdb",
-  "cacheTimeout": null,
-  "colorBackground": false,
-  "colorValue": true,
-  "colors": [
-    "rgba(245, 54, 54, 0.9)",
-    "rgba(237, 129, 40, 0.89)",
-    "rgba(50, 172, 45, 0.97)"
-  ],
-  "format": "none",
-  "gauge": {
-    "maxValue": 100,
-    "minValue": 0,
-    "show": false,
-    "thresholdLabels": false,
-    "thresholdMarkers": true
+  "datasource": {
+    "type": "influxdb"
   },
-  "id": 7,
+  "cacheTimeout": null,
+  "description": "",
+  "id": 4,
   "interval": null,
   "links": [],
-  "mappingType": 1,
-  "mappingTypes": [
-    {
-      "name": "value to text",
-      "value": 1
-    },
-    {
-      "name": "range to text",
-      "value": 2
-    }
-  ],
   "maxDataPoints": 100,
-  "nullPointMode": "connected",
-  "nullText": null,
-  "postfix": "",
-  "postfixFontSize": "50%",
-  "prefix": "",
-  "prefixFontSize": "50%",
-  "rangeMaps": [
-    {
-      "from": "null",
-      "text": "N/A",
-      "to": "null"
-    }
-  ],
   "span": 1,
-  "sparkline": {
-    "fillColor": "rgba(31, 118, 189, 0.18)",
-    "full": false,
-    "lineColor": "rgb(31, 120, 193)",
-    "show": false
-  },
-  "tableColumn": "",
   "targets": [
     {
       "dsType": "influxdb",
@@ -77,32 +34,69 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
-  "thresholds": "0.5,1",
   "title": "License",
-  "type": "singlestat",
-  "valueFontSize": "50%",
-  "valueMaps": [
-    {
-      "op": "=",
-      "text": "valid",
-      "value": "1"
+  "type": "stat",
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [
+        {
+          "type": "value",
+          "options": {
+            "0": {
+              "text": "invalid"
+            },
+            "1": {
+              "text": "valid"
+            }
+          }
+        }
+      ],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "rgba(245, 54, 54, 0.9)"
+          },
+          {
+            "value": 0.5,
+            "color": "rgba(237, 129, 40, 0.89)"
+          },
+          {
+            "value": 1,
+            "color": "rgba(50, 172, 45, 0.97)"
+          }
+        ]
+      },
+      "unit": "none",
+      "color": {
+        "mode": "thresholds"
+      }
     },
-    {
-      "value": "0",
-      "op": "=",
-      "text": "invalid"
-    }
-  ],
-  "valueName": "current",
-  "gridPos": {
-    "x": 8,
-    "y": 9,
-    "w": 2,
-    "h": 7
+    "overrides": []
   },
-  "options": {},
-  "description": ""
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "horizontal",
+    "textMode": "auto",
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "text": {
+      "valueSize": 20
+    }
+  },
+  "pluginVersion": "9.5.3"
 }

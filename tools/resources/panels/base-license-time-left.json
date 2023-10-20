@@ -1,63 +1,13 @@
 {
-  "datasource": "influxdb",
-  "cacheTimeout": null,
-  "colorBackground": false,
-  "colorValue": false,
-  "colors": [
-    "#299c46",
-    "rgba(237, 129, 40, 0.89)",
-    "#d44a3a"
-  ],
-  "decimals": null,
+  "datasource": {
+    "type": "influxdb"
+  },
   "description": "Support (for perpetual) or time (for subscription and evaluation) left in days",
-  "format": "none",
-  "gauge": {
-    "maxValue": 100,
-    "minValue": 0,
-    "show": false,
-    "thresholdLabels": false,
-    "thresholdMarkers": true
-  },
-  "span": 2,
-  "gridPos": {
-    "x": 2,
-    "y": 9,
-    "w": 4,
-    "h": 7
-  },
   "id": 7,
-  "interval": null,
   "links": [],
-  "mappingType": 2,
-  "mappingTypes": [
-    {
-      "name": "value to text",
-      "value": 1
-    },
-    {
-      "name": "range to text",
-      "value": 2
-    }
-  ],
   "maxDataPoints": 100,
-  "nullPointMode": "connected",
-  "nullText": null,
-  "options": {},
-  "pluginVersion": "6.6.2",
-  "postfix": " ",
-  "postfixFontSize": "50%",
-  "prefix": "",
-  "prefixFontSize": "50%",
-  "rangeMaps": [],
-  "sparkline": {
-    "fillColor": "rgba(31, 118, 189, 0.18)",
-    "full": false,
-    "lineColor": "rgb(31, 120, 193)",
-    "show": false,
-    "ymax": null,
-    "ymin": null
-  },
-  "tableColumn": "",
+  "pluginVersion": "9.5.3",
+  "span": 2,
   "targets": [
     {
       "groupBy": [],
@@ -82,15 +32,56 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
-  "thresholds": "",
-  "timeFrom": null,
-  "timeShift": null,
   "title": "Support/Time left",
-  "type": "singlestat",
-  "valueFontSize": "50%",
-  "valueMaps": [],
-  "valueName": "current"
+  "type": "stat",
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "none",
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": []
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": "/^product\\-license\\.remaining\\-days$/"
+    },
+    "orientation": "horizontal",
+    "textMode": "auto",
+    "colorMode": "none",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "text": {
+      "valueSize": 20
+    }
+  },
+  "cacheTimeout": null,
+  "interval": null,
+  "timeFrom": null,
+  "timeShift": null
 }

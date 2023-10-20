@@ -1,11 +1,11 @@
 {
+  "datasource": {
+    "type": "influxdb"
+  },
   "aliasColors": {},
-  "bars": false,
   "dashLength": 10,
-  "dashes": false,
-  "datasource": "influxdb",
   "fill": 1,
-  "id": 8,
+  "id": 16,
   "legend": {
     "avg": false,
     "current": false,
@@ -19,15 +19,11 @@
   "linewidth": 1,
   "links": [],
   "nullPointMode": "null",
-  "percentage": false,
   "pointradius": 5,
-  "points": false,
   "renderer": "flot",
   "seriesOverrides": [],
   "spaceLength": 10,
   "span": 6,
-  "stack": false,
-  "steppedLine": false,
   "targets": [
     {
       "alias": "users",
@@ -54,12 +50,13 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
   "thresholds": [],
-  "timeFrom": null,
-  "timeShift": null,
   "title": "User count",
   "tooltip": {
     "shared": true,
@@ -91,6 +88,45 @@
       "max": null,
       "min": null,
       "show": true
+    }
+  ],
+  "gridPos": {
+    "x": 0,
+    "y": 61,
+    "w": 12,
+    "h": 7
+  },
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "timeRegions": [],
+  "bars": false,
+  "dashes": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null,
+  "fillGradient": 0,
+  "hiddenSeries": false,
+  "transformations": [
+    {
+      "id": "convertFieldType",
+      "options": {
+        "fields": {},
+        "conversions": [
+          {
+            "targetField": "users",
+            "destinationType": "number"
+          }
+        ]
+      }
     }
   ]
 }

@@ -58,7 +58,7 @@
     }
   ],
   "title": "$filling",
-  "type": "grafana-piechart-panel",
+  "type": "piechart",
   "valueName": "current",
   "scopedVars": {
     "filling": {

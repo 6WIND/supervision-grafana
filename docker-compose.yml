@@ -2,10 +2,9 @@ version: '2'
 services:
   grafana:
     # Full tag list: https://hub.docker.com/r/grafana/grafana/tags/
-    image: grafana/grafana:6.6.2
+    image: grafana/grafana:9.5.3
     container_name: grafana
     environment:
-      GF_INSTALL_PLUGINS: grafana-piechart-panel
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin
     networks:
@@ -20,7 +19,7 @@ services:
       - influxdb
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:1.7.10
+    image: influxdb:1.8.10
     container_name: influxdb
     networks:
       - monitoring
