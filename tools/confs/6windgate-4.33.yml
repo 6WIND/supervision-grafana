@@ -125,17 +125,17 @@ dashboards:
     rows:
       - title: Blocks and CPEs
         panels:
-          - cgnat-blocks-and-cpes
-          - cgnat-blocks-and-cpes-rate
-          - cgnat-block-and-cpe-alloc-errors
+          - old/cgnat-blocks-and-cpes
+          - old/cgnat-blocks-and-cpes-rate
+          - old/cgnat-block-and-cpe-alloc-errors
       - title: Sessions
         panels:
-          - cgnat-sessions
-          - cgnat-sessions-rate
+          - old/cgnat-sessions
+          - old/cgnat-sessions-rate
       - title: Sessions Errors
         panels:
-          - cgnat-invalid-packets
-          - cgnat-port-alloc-errors
+          - old/cgnat-invalid-packets
+          - old/cgnat-port-alloc-errors
 
 datasources:
    influxdb:

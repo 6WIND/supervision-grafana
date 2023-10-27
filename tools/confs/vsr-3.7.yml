@@ -10,11 +10,18 @@ dashboards:
           - base-ram-usage
           - base-linux-cpu-usage
           - base-fp-cpu-usage
+      - title: License
+        panels:
+          - overview-license
+          - base-license-time-left
+          - base-license-throughput
+          - base-license-cgnat
+          - base-license-ipsec
+          - base-network-twamp-stats
       - title: Network
         panels:
           - base-network-nic-info
           - base-network-traffic
-          - base-network-twamp-stats
     templating:
       - file: host
       - file: fpcpus
@@ -30,7 +37,9 @@ dashboards:
           - base-uptime
           - base-fp-status
           - overview-version
-          - old/overview-license
+          - overview-license
+          - base-license-time-left:
+              span: 1
           - base-ram-usage:
               span: 2
           - base-linux-cpu-usage:
@@ -40,6 +49,8 @@ dashboards:
         repeat: host
     templating:
       - file: hosts
+      - file: fpcpus
+
   debug:
     enabled: yes
     title: debug
@@ -76,8 +87,12 @@ dashboards:
           - debug-fp-soft-interrupts
       - title: Linux statistics
         panels:
-          - debug-linux-hw-stats
-          - debug-linux-file-descriptors
+          - debug-linux-hw-stats:
+              span: 6
+          - debug-linux-file-descriptors:
+              span: 6
+          - next/debug-linux-cpu-times:
+              span: 12
       - title: FP ports statistics
         panels:
           - debug-fp-port-queue-stats
@@ -119,24 +134,51 @@ dashboards:
           - base-filling-pie-repeat
       - title: Blocks and CPEs
         panels:
-          - cgnat-blocks-and-cpes
-          - cgnat-blocks-and-cpes-rate
-          - cgnat-block-and-cpe-alloc-errors
+          - old/cgnat-blocks-and-cpes
+          - old/cgnat-blocks-and-cpes-rate
+          - old/cgnat-block-and-cpe-alloc-errors
       - title: Sessions
         panels:
-          - cgnat-sessions
-          - cgnat-sessions-rate
-          - next/cgnat-sessions-alloc-errors
+          - old/cgnat-sessions
+          - old/cgnat-sessions-rate
+          - old/cgnat-sessions-alloc-errors
       - title: Sessions Errors
         panels:
-          - next/cgnat-invalid-packets
-          - next/cgnat-port-alloc-errors
+          - old/cgnat-invalid-packets
+          - old/cgnat-port-alloc-errors
       - title: Packets stats
         panels:
-          - next/cgnat-hairpinning-stats
-          - next/cgnat-passed-packets
-          - next/cgnat-blocked-packets
-          - next/cgnat-packet-race-cases
+          - old/cgnat-hairpinning-stats
+          - old/cgnat-passed-packets
+          - old/cgnat-blocked-packets
+          - old/cgnat-packet-race-cases
+
+  router:
+    inherits: base
+    enabled: yes
+    title: router
+    templating:
+      - file: filling
+        values:
+          - neighbors-ipv4
+          - routes-ipv4
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Users
+        panels:
+          - base-user-count
+          - base-logged-users
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: FP table $filling
+        panels:
+          - base-filling-pie
+          - base-filling-history
+        repeat: filling
 
 datasources:
    influxdb:
