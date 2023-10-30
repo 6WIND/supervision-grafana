@@ -57,17 +57,17 @@ dashboards:
     rows:
       - title: FP statistics
         panels:
-          - next/debug-fp-drop:
+          - debug-fp-drop:
               span: 6
-          - next/debug-fp-module-exception:
+          - debug-fp-module-exception:
               span: 6
       - title: FP L2 stack
         panels:
-          - next/debug-fp-bridge:
+          - debug-fp-bridge:
               span: 4
-          - next/debug-fp-ebtables:
+          - debug-fp-ebtables:
               span: 4
-          - next/debug-fp-vlan:
+          - debug-fp-vlan:
               span: 4
       - title: FP L3 stack
         panels:
@@ -91,7 +91,7 @@ dashboards:
               span: 6
           - debug-linux-file-descriptors:
               span: 6
-          - next/debug-linux-cpu-times:
+          - debug-linux-cpu-times:
               span: 12
       - title: FP ports statistics
         panels:
