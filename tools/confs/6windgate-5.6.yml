@@ -1,4 +1,4 @@
-  dashboards:
+dashboards:
   base:
     enabled: no
     title: base
