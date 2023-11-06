@@ -1,0 +1,186 @@
+{
+    "datasource": {
+        "type": "influxdb",
+        "uid": "ff27b98c-2277-4a00-b9f9-fa1b7ba59672"
+    },
+    "fieldConfig": {
+        "defaults": {
+            "custom": {
+                "drawStyle": "line",
+                "lineInterpolation": "linear",
+                "barAlignment": 0,
+                "lineWidth": 1,
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "showPoints": "auto",
+                "pointSize": 5,
+                "stacking": {
+                    "mode": "none",
+                    "group": "A"
+                },
+                "axisPlacement": "auto",
+                "axisLabel": "",
+                "axisColorMode": "text",
+                "scaleDistribution": {
+                    "type": "linear"
+                },
+                "axisCenteredZero": false,
+                "hideFrom": {
+                    "tooltip": false,
+                    "viz": false,
+                    "legend": false
+                },
+                "thresholdsStyle": {
+                    "mode": "off"
+                }
+            },
+            "color": {
+                "mode": "palette-classic"
+            },
+            "mappings": [],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    },
+                    {
+                        "color": "red",
+                        "value": 80
+                    }
+                ]
+            }
+        },
+        "overrides": []
+    },
+    "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 56
+    },
+    "id": 22,
+    "options": {
+        "tooltip": {
+            "mode": "single",
+            "sort": "none"
+        },
+        "legend": {
+            "showLegend": true,
+            "displayMode": "list",
+            "placement": "bottom",
+            "calcs": []
+        }
+    },
+    "targets": [
+        {
+            "alias": "$col",
+            "datasource": {
+                "type": "influxdb",
+                "uid": "ff27b98c-2277-4a00-b9f9-fa1b7ba59672"
+            },
+            "groupBy": [],
+            "measurement": "fp-conntrack-stats",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+                [
+                    {
+                        "params": [
+                            "tcp-non-syn-first-packet-drops"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [
+                            "tcp-non-syn-first-packet-drops"
+                        ],
+                        "type": "alias"
+                    }
+                ],
+                [
+                    {
+                        "params": [
+                            "tcp-invalid-sequence-order-rst-packet-drops"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [
+                            "tcp-invalid-sequence-order-rst-packet-drops"
+                        ],
+                        "type": "alias"
+                    }
+                ],
+                [
+                    {
+                        "params": [
+                            "tcp-invalid-state-transition-packet-drops"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [
+                            "tcp-invalid-state-transition-packet-drops"
+                        ],
+                        "type": "alias"
+                    }
+                ],
+                [
+                    {
+                        "params": [
+                            " tcp-out-of-lower-bound-window-segment"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [
+                            "tcp-out-of-lower-bound-window-segment"
+                        ],
+                        "type": "alias"
+                    }
+                ],
+                [
+                    {
+                        "params": [
+                            "tcp-out-of-window-ack-packet-drops"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [
+                            "tcp-out-of-window-ack-packet-drops"
+                        ],
+                        "type": "alias"
+                    }
+                ],
+                [
+                    {
+                        "params": [
+                            "malformed-ip-header-packet-drops"
+                        ],
+                        "type": "field"
+                    },
+                    {
+                        "params": [
+                            "malformed-ip-header-packet-drops"
+                        ],
+                        "type": "alias"
+                    }
+                ]
+            ],
+            "tags": [
+                {
+                    "key": "host::tag",
+                    "operator": "=~",
+                    "value": "/^$host$/"
+                }
+            ]
+        }
+    ],
+    "title": "Conntrack invalid packets",
+    "type": "timeseries"
+}

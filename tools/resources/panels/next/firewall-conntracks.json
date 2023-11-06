@@ -1,0 +1,130 @@
+{
+  "datasource": {
+    "uid": "adacb6e5-4cf2-4a59-a66d-35e1a37dad1f",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "gridPos": {
+    "x": 0,
+    "y": 55,
+    "w": 8,
+    "h": 7
+  },
+  "id": 13,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a"
+      },
+      "alias": "conntrack",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT conntrack FROM (SELECT \"allocations\" - \"destructions\" as \"conntrack\" FROM \"fp-conntrack-stats\" WHERE (\"host\" =~ /^$host$/)  AND $timeFilter) \n",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": []
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "Conntracks",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "bars": false,
+  "dashes": false,
+  "fillGradient": 0,
+  "hiddenSeries": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null
+}

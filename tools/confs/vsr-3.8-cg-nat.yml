@@ -140,6 +140,36 @@ dashboards:
           - next/cgnat-packet-race-cases:
               span: 6
 
+  firewall:
+    inherits: base
+    enabled: yes
+    title: firewall
+    templating:
+      - file: filling
+        values:
+          - fp-conntracks
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: Fp Filling
+        panels:
+          - base-filling-pie-repeat
+      - title: Conntracks
+        panels:
+         - next/firewall-conntracks
+         - next/firewall-conntracks-rate
+         - next/firewall-conntrack-invalid-packets
+      - title: Firewall
+        panels:
+        - next/firewall-actions
+        - next/firewall-accepted-packets-rate
+        - next/firewall-dropped-packets-rate
+
 datasources:
    influxdb:
      enabled: yes

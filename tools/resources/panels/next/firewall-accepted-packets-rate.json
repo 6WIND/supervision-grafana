@@ -1,0 +1,159 @@
+{
+    "datasource": {
+      "uid": "ea643f9f-c48c-421b-a9ff-456f23e8b87f",
+      "type": "influxdb"
+    },
+    "aliasColors": {},
+    "dashLength": 10,
+    "fill": 1,
+    "gridPos": {
+      "x": 8,
+      "y": 63,
+      "w": 8,
+      "h": 7
+    },
+    "id": 28,
+    "legend": {
+      "avg": false,
+      "current": false,
+      "max": false,
+      "min": false,
+      "show": true,
+      "total": false,
+      "values": false
+    },
+    "lines": true,
+    "linewidth": 1,
+    "links": [],
+    "nullPointMode": "null",
+    "options": {
+      "alertThreshold": true
+    },
+    "pluginVersion": "9.5.3",
+    "pointradius": 5,
+    "renderer": "flot",
+    "seriesOverrides": [
+      {
+        "alias": "/.*deletion.*/",
+        "transform": "negative-Y"
+      }
+    ],
+    "spaceLength": 10,
+    "targets": [
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a"
+        },
+        "alias": "$col",
+        "dsType": "influxdb",
+        "groupBy": [],
+        "hide": false,
+        "measurement": "fp-firewall-stats",
+        "orderByTime": "ASC",
+        "policy": "default",
+        "query": "SELECT state  FROM (SELECT derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
+        "rawQuery": false,
+        "refId": "A",
+        "resultFormat": "time_series",
+        "select": [
+          [
+            {
+              "params": [
+                "rule-accepted-packets"
+              ],
+              "type": "field"
+            },
+            {
+              "params": [
+                "1s"
+              ],
+              "type": "derivative"
+            },
+            {
+              "params": [
+                "rule-accepted-packets-rate"
+              ],
+              "type": "alias"
+            }
+          ],
+          [
+            {
+              "params": [
+                "conntrack-accepted-packets"
+              ],
+              "type": "field"
+            },
+            {
+              "params": [
+                "1s"
+              ],
+              "type": "derivative"
+            },
+            {
+              "params": [
+                "conntrack-accepted-packets-rate"
+              ],
+              "type": "alias"
+            }
+          ]
+        ],
+        "tags": [
+          {
+            "key": "host",
+            "operator": "=~",
+            "value": "/^$host$/"
+          }
+        ]
+      }
+    ],
+    "thresholds": [],
+    "timeRegions": [],
+    "title": "Accepted packets per second",
+    "tooltip": {
+      "shared": true,
+      "sort": 0,
+      "value_type": "individual"
+    },
+    "type": "graph",
+    "xaxis": {
+      "buckets": null,
+      "mode": "time",
+      "name": null,
+      "show": true,
+      "values": []
+    },
+    "yaxes": [
+      {
+        "format": "short",
+        "label": null,
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true
+      },
+      {
+        "format": "short",
+        "label": null,
+        "logBase": 1,
+        "max": null,
+        "min": null,
+        "show": true
+      }
+    ],
+    "yaxis": {
+      "align": false,
+      "alignLevel": null
+    },
+    "bars": false,
+    "dashes": false,
+    "description": "",
+    "fillGradient": 0,
+    "hiddenSeries": false,
+    "percentage": false,
+    "points": false,
+    "stack": false,
+    "steppedLine": false,
+    "timeFrom": null,
+    "timeShift": null
+  }
