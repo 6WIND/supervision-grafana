@@ -1,0 +1,225 @@
+{
+  "datasource": {
+    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "id": 17,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "/.*deletion.*/",
+      "transform": "negative-Y"
+    }
+  ],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-conntrack-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT state  FROM (SELECT derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "allocations"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "conntrack-allocations"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "destructions"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "conntrack-destructions"
+            ]
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-cg-nat-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT nat FROM (SELECT derivative(\"nat-allocations\", 1s) as \"nat\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
+      "rawQuery": false,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "nat-allocations"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "nat-allocations"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "nat-destructions"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "nat-destructions"
+            ]
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "title": "Conntrack allocations/destructions per second",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "gridPos": {
+    "x": 8,
+    "y": 63,
+    "w": 8,
+    "h": 7
+  },
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "timeRegions": [],
+  "bars": false,
+  "dashes": false,
+  "description": "",
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null,
+  "fillGradient": 0,
+  "hiddenSeries": false
+}

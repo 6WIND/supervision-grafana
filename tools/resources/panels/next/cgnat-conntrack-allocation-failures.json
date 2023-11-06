@@ -1,0 +1,195 @@
+{
+  "datasource": {
+    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "id": 18,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "/.*deletion.*/",
+      "transform": "negative-Y"
+    }
+  ],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-cg-nat-stats",
+      "orderByTime": "ASC",
+      "policy": "autogen",
+      "query": "SELECT difference(\"state-allocation-failures\") AS \"state-allocation-failures\", difference(\"nat-allocation-failures\") AS \"nat-allocation-failures\", difference(\"cpe-too-many-connections\") AS \"cpe-too-many-connections\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "nat-allocation-failures"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "nat-allocation-failures"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "user-too-many-conntracks"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "user-too-many-conntracks"
+            ]
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "refId": "B",
+      "hide": false,
+      "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [
+        {
+          "key": "host",
+          "value": "/^$host$/",
+          "operator": "=~"
+        }
+      ],
+      "groupBy": [],
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "allocation-failures"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "conntrack-allocation-failures"
+            ]
+          }
+        ]
+      ],
+      "policy": "autogen",
+      "measurement": "fp-conntrack-stats",
+      "alias": "$col"
+    }
+  ],
+  "thresholds": [],
+  "title": "Conntrack allocation failures",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "gridPos": {
+    "x": 16,
+    "y": 63,
+    "w": 8,
+    "h": 7
+  },
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "timeRegions": [],
+  "bars": false,
+  "dashes": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null,
+  "fillGradient": 0,
+  "hiddenSeries": false
+}

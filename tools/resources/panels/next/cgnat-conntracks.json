@@ -1,0 +1,174 @@
+{
+  "datasource": {
+    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "id": 16,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "show": true,
+    "total": false,
+    "values": false,
+    "min": false,
+    "max": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "conntrack",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT conntrack FROM (SELECT \"allocations\" - \"destructions\" as \"conntrack\" FROM \"fp-conntrack-stats\" WHERE (\"host\" =~ /^$host$/)  AND $timeFilter) \n",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": []
+    },
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "nat",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "$__interval"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "null"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT nat FROM (SELECT \"nat-allocations\" - \"nat-destructions\" as \"nat\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/)  AND $timeFilter)\n",
+      "rawQuery": true,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": []
+    }
+  ],
+  "thresholds": [],
+  "title": "Conntracks",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "gridPos": {
+    "x": 0,
+    "y": 63,
+    "w": 8,
+    "h": 7
+  },
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "timeRegions": [],
+  "bars": false,
+  "dashes": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null,
+  "fillGradient": 0,
+  "hiddenSeries": false
+}

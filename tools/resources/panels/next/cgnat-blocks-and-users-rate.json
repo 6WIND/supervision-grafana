@@ -1,0 +1,189 @@
+{
+  "datasource": {
+    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "id": 14,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "/.*deletion.*/",
+      "transform": "negative-Y"
+    }
+  ],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "refId": "A",
+      "hide": false,
+      "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [],
+      "groupBy": [],
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "block-allocations"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "block-allocation-rate"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "block-destructions"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "block-destruction-rate"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "user-allocations"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "user-allocations-rate"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "user-destructions"
+            ]
+          },
+          {
+            "type": "derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "user-destructions-rate"
+            ]
+          }
+        ]
+      ],
+      "policy": "autogen",
+      "measurement": "fp-cg-nat-stats",
+      "alias": "$col"
+    }
+  ],
+  "thresholds": [],
+  "title": "Block and user allocations/destructions per second",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "gridPos": {
+    "x": 8,
+    "y": 55,
+    "w": 8,
+    "h": 7
+  },
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "timeRegions": [],
+  "bars": false,
+  "dashes": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null,
+  "fillGradient": 0,
+  "hiddenSeries": false
+}

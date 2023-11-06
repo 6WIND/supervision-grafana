@@ -17,7 +17,7 @@ and simple use the start script by giving the configuration file to use.
 # apt-get install docker-compose python3-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana
-$ ./start tools/confs/vsr-3.5.yml
+$ ./start tools/confs/vsr-3.8.yml
 Creating network "supervision-grafana_monitoring" with the default driver
 Pulling influxdb (influxdb:1.7.10)...
 1.7.10: Pulling from library/influxdb

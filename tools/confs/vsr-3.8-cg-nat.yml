@@ -1,0 +1,157 @@
+dashboards:
+  base:
+    enabled: no
+    title: base
+    rows:
+      - title: System
+        panels:
+          - base-uptime
+          - base-fp-status
+          - base-ram-usage
+          - base-linux-cpu-usage
+          - base-fp-cpu-usage
+      - title: Network
+        panels:
+          - base-network-nic-info
+          - base-network-traffic
+          - base-network-twamp-stats
+    templating:
+      - file: host
+      - file: fpcpus
+      - file: interfaces
+      - file: twamp-sessions
+
+  overview:
+    enabled: yes
+    title: overview
+    rows:
+      - title: $host
+        panels:
+          - base-uptime
+          - base-fp-status
+          - overview-version
+          - old/overview-license
+          - base-ram-usage:
+              span: 2
+          - base-linux-cpu-usage:
+              span: 2
+          - base-fp-cpu-usage:
+              span: 2
+        repeat: host
+    templating:
+      - file: hosts
+  debug:
+    enabled: yes
+    title: debug
+    rows:
+      - title: FP statistics
+        panels:
+          - debug-fp-drop:
+              span: 6
+          - debug-fp-module-exception:
+              span: 6
+      - title: FP L2 stack
+        panels:
+          - debug-fp-bridge:
+              span: 4
+          - debug-fp-ebtables:
+              span: 4
+          - debug-fp-vlan:
+              span: 4
+      - title: FP L3 stack
+        panels:
+          - debug-fp-ip
+          - debug-fp-ip6
+      - title: FP tunnels
+        panels:
+          - debug-fp-gre
+          - debug-fp-vxlan
+      - title: FP to Linux
+        panels:
+          - debug-fp-exceptions
+      - title: FP isolation
+        panels:
+          - debug-fp-context-switch
+          - debug-numa-stats
+          - debug-fp-soft-interrupts
+      - title: Linux statistics
+        panels:
+          - debug-linux-hw-stats
+          - debug-linux-file-descriptors
+      - title: FP ports statistics
+        panels:
+          - debug-fp-port-queue-stats
+          - debug-fp-port-bulk-stats
+          - debug-fp-port-stats
+      - title: FP CP protection
+        panels:
+          - debug-fp-cp-protection
+        collapse: yes
+      - title: FP GRO
+        panels:
+          - debug-fp-gro
+        collapse: yes
+    templating:
+      - file: host
+      - file: fpcpus
+
+  cgnat:
+    inherits: base
+    enabled: yes
+    title: cg-nat
+    templating:
+      - file: filling
+        values:
+          - fp-conntracks
+          - cgnat-nats
+          - cgnat-users
+          - cgnat-blocks
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: Fp Filling
+        panels:
+          - base-filling-pie-repeat
+      - title: Blocks and Users
+        panels:
+          - next/cgnat-blocks-and-users
+          - next/cgnat-blocks-and-users-rate
+          - next/cgnat-block-and-user-allocation-failures
+      - title: Conntracks
+        panels:
+          - next/cgnat-conntracks
+          - next/cgnat-conntracks-rate
+          - next/cgnat-conntrack-allocation-failures
+      - title: Conntracks Failures
+        panels:
+          - next/cgnat-invalid-packets:
+              span: 6
+          - next/cgnat-port-allocation-failures:
+              span: 6
+      - title: Packets stats
+        panels:
+          - next/cgnat-hairpinning-stats:
+              span: 6
+          - next/cgnat-packet-race-cases:
+              span: 6
+
+datasources:
+   influxdb:
+     enabled: yes
+     access: proxy
+     database: telegraf
+     name: influxdb
+     type: influxdb
+     url: http://influxdb:8086
+     isDefault: yes
+
+grafana:
+  host: localhost
+  port: 3000
+  user: admin
+  password: admin

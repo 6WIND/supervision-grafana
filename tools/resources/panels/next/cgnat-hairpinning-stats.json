@@ -1,0 +1,171 @@
+{
+  "datasource": {
+    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "gridPos": {
+    "x": 0,
+    "y": 79,
+    "w": 8,
+    "h": 7
+  },
+  "id": 21,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
+  "pointradius": 2,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "$col",
+      "groupBy": [],
+      "measurement": "fp-cg-nat-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT difference(\"hairpinning-packets\") AS \"hairpinnig-packets\", difference(\"loop-dropped-hairpinning-packets\") AS \"loop-dropped-hairpinning-packets\", difference(\"self-dropped-hairpinning-packets\") AS \"self-dropped-hairpinning-packets\" FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "hairpinned-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "hairpinned-packets"
+            ],
+            "type": "alias"
+          }
+        ],
+        [
+          {
+            "params": [
+              "loop-hairpin-dropped-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "loop-hairpin-dropped-packets"
+            ],
+            "type": "alias"
+          }
+        ],
+        [
+          {
+            "params": [
+              "self-hairpin-dropped-packets"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "self-hairpin-dropped-packets"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "Hairpinning stats",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "fieldConfig": {
+    "defaults": {
+      "links": []
+    },
+    "overrides": []
+  },
+  "pluginVersion": "9.5.3",
+  "bars": false,
+  "dashes": false,
+  "description": "",
+  "fillGradient": 0,
+  "hiddenSeries": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null
+}

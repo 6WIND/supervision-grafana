@@ -1,0 +1,166 @@
+{
+  "datasource": {
+    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "id": 20,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
+        "type": "influxdb"
+      },
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-cg-nat-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT difference(/invalid-.*-states/) as _ FROM \"fp-cg-nat-stats\" WHERE $timeFilter",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "user-no-public-ip-errors"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "user-no-public-ip-errors"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "user-full-public-ip-errors"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "user-full-public-ip-errors"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "nat-port-allocation-failures"
+            ]
+          },
+          {
+            "type": "difference",
+            "params": []
+          },
+          {
+            "type": "alias",
+            "params": [
+              "nat-port-allocation-failures"
+            ]
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "title": "Port allocation failures",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    },
+    {
+      "format": "short",
+      "label": null,
+      "logBase": 1,
+      "max": null,
+      "min": null,
+      "show": true
+    }
+  ],
+  "gridPos": {
+    "x": 12,
+    "y": 71,
+    "w": 12,
+    "h": 7
+  },
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "timeRegions": [],
+  "bars": false,
+  "dashes": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null,
+  "fillGradient": 0,
+  "hiddenSeries": false
+}
