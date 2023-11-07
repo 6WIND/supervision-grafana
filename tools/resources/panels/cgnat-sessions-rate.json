@@ -3,10 +3,21 @@
   "bars": false,
   "dashLength": 10,
   "dashes": false,
-  "datasource": "influxdb",
+  "datasource": {
+    "uid": "d76c2252-d830-45de-b4e8-cfbd4d12375c",
+    "type": "influxdb"
+  },
   "description": "",
   "fill": 1,
-  "id": 5,
+  "fillGradient": 0,
+  "gridPos": {
+    "x": 8,
+    "y": 71,
+    "w": 8,
+    "h": 7
+  },
+  "hiddenSeries": false,
+  "id": 22,
   "legend": {
     "avg": false,
     "current": false,
@@ -20,7 +31,11 @@
   "linewidth": 1,
   "links": [],
   "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
   "percentage": false,
+  "pluginVersion": "9.5.3",
   "pointradius": 5,
   "points": false,
   "renderer": "flot",
@@ -31,12 +46,15 @@
     }
   ],
   "spaceLength": 10,
-  "span": 4,
   "stack": false,
   "steppedLine": false,
   "targets": [
     {
-      "alias": "conntrack-creation-rate",
+      "datasource": {
+        "uid": "d76c2252-d830-45de-b4e8-cfbd4d12375c",
+        "type": "influxdb"
+      },
+      "alias": "$col",
       "dsType": "influxdb",
       "groupBy": [],
       "hide": false,
@@ -50,124 +68,82 @@
       "select": [
         [
           {
+            "type": "field",
             "params": [
               "state-allocations"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "conntrack-creation-rate"
+            ]
           }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
-    },
-    {
-      "alias": "conntrack-deletion-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "hide": false,
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT state FROM (SELECT derivative(\"state-destructions\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
-      "rawQuery": false,
-      "refId": "B",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
+            "type": "field",
             "params": [
               "state-destructions"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "conntrack-deletion-rate"
+            ]
           }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
-    },
-    {
-      "alias": "nat-creation-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "hide": false,
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT nat FROM (SELECT derivative(\"nat-allocations\", 1s) as \"nat\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
-      "rawQuery": false,
-      "refId": "C",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
+            "type": "field",
             "params": [
               "nat-allocations"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "nat-creation-rate"
+            ]
           }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
-    },
-    {
-      "alias": "nat-deletion-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "hide": false,
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT nat FROM (SELECT derivative(\"nat-destructions\", 1s) as \"nat\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
-      "rawQuery": false,
-      "refId": "D",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
+            "type": "field",
             "params": [
               "nat-destructions"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "nat-deletion-rate"
+            ]
           }
         ]
       ],
@@ -182,6 +158,7 @@
   ],
   "thresholds": [],
   "timeFrom": null,
+  "timeRegions": [],
   "timeShift": null,
   "title": "Session creation/deletion per seconds",
   "tooltip": {
@@ -214,5 +191,9 @@
       "min": null,
       "show": true
     }
-  ]
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  }
 }

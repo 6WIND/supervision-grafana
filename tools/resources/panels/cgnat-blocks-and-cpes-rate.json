@@ -3,9 +3,20 @@
   "bars": false,
   "dashLength": 10,
   "dashes": false,
-  "datasource": "influxdb",
+  "datasource": {
+    "uid": "d76c2252-d830-45de-b4e8-cfbd4d12375c",
+    "type": "influxdb"
+  },
   "fill": 1,
-  "id": 6,
+  "fillGradient": 0,
+  "gridPos": {
+    "x": 8,
+    "y": 63,
+    "w": 8,
+    "h": 7
+  },
+  "hiddenSeries": false,
+  "id": 19,
   "legend": {
     "avg": false,
     "current": false,
@@ -19,7 +30,11 @@
   "linewidth": 1,
   "links": [],
   "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
   "percentage": false,
+  "pluginVersion": "9.5.3",
   "pointradius": 5,
   "points": false,
   "renderer": "flot",
@@ -30,156 +45,116 @@
     }
   ],
   "spaceLength": 10,
-  "span": 4,
   "stack": false,
   "steppedLine": false,
   "targets": [
     {
-      "alias": "block-creation-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "hide": false,
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT derivative(\"block-allocations\", 1s) FROM \"fp-cg-nat-stats\" WHERE $timeFilter",
-      "rawQuery": false,
+      "datasource": {
+        "uid": "d76c2252-d830-45de-b4e8-cfbd4d12375c",
+        "type": "influxdb"
+      },
       "refId": "A",
+      "hide": false,
       "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [
+        {
+          "key": "host",
+          "value": "/^$host$/",
+          "operator": "=~"
+        }
+      ],
+      "groupBy": [],
       "select": [
         [
           {
+            "type": "field",
             "params": [
               "block-allocations"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "block-creation-rate"
+            ]
           }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
-    },
-    {
-      "alias": "block-deletion-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "hide": false,
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT derivative(\"block-destructions\", 1s) FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
-      "rawQuery": false,
-      "refId": "B",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
+            "type": "field",
             "params": [
               "block-destructions"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "block-deletion-rate"
+            ]
           }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
-    },
-    {
-      "alias": "cpe-creation-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "hide": false,
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT derivative(\"cpe-allocations\", 1s) FROM \"fp-cg-nat-stats\" WHERE $timeFilter",
-      "rawQuery": false,
-      "refId": "C",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
+            "type": "field",
             "params": [
               "cpe-allocations"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "cpe-creation-rate"
+            ]
           }
-        ]
-      ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
-    },
-    {
-      "alias": "cpe-deletion-rate",
-      "dsType": "influxdb",
-      "groupBy": [],
-      "measurement": "fp-cg-nat-stats",
-      "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT derivative(\"cpe-destructions\", 1s) FROM \"fp-cg-nat-stats\" WHERE $timeFilter",
-      "rawQuery": false,
-      "refId": "D",
-      "resultFormat": "time_series",
-      "select": [
+        ],
         [
           {
+            "type": "field",
             "params": [
               "cpe-destructions"
-            ],
-            "type": "field"
+            ]
           },
           {
+            "type": "derivative",
             "params": [
               "1s"
-            ],
-            "type": "derivative"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "cpe-deletion-rate"
+            ]
           }
         ]
       ],
-      "tags": [
-        {
-          "key": "host",
-          "operator": "=~",
-          "value": "/^$host$/"
-        }
-      ]
+      "policy": "autogen",
+      "measurement": "fp-cg-nat-stats",
+      "alias": "$col"
     }
   ],
   "thresholds": [],
   "timeFrom": null,
+  "timeRegions": [],
   "timeShift": null,
   "title": "Block and CPE creation/deletion per seconds",
   "tooltip": {
@@ -212,5 +187,9 @@
       "min": null,
       "show": true
     }
-  ]
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  }
 }
