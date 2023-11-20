@@ -87,13 +87,13 @@ The list of this existing configuration files can be listed by simply called the
 $ ./start
 Usage: ./start [conf_file]
 Existing configuration file are:
-./tools/confs/vrouter-3.0.yml
-./tools/confs/turbo-ipsec-next.yml
-./tools/confs/turbo-router-next.yml
-./tools/confs/turbo-ipsec-1.6.yml
-./tools/confs/6windgate-4.19.yml
-./tools/confs/turbo-router-1.6.yml
-./tools/confs/6windgate-next.yml
+./tools/confs/6windgate-4.33.yml
+./tools/confs/6windgate-5.6.yml
+./tools/confs/vsr-3.5.yml
+./tools/confs/vsr-3.7-cg-nat.yml
+./tools/confs/vsr-3.7.yml
+./tools/confs/vsr-3.8-cg-nat.yml
+./tools/confs/vsr-3.8.yml
 ```
 
 Configuration files can be stored anywhere but only configuration file present in the [tools/confs](./tools/confs) directory are listed
