@@ -50,7 +50,7 @@
         "measurement": "fp-conntrack-stats",
         "orderByTime": "ASC",
         "policy": "default",
-        "query": "SELECT state  FROM (SELECT derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
+        "query": "SELECT state  FROM (SELECT non_negative_derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
         "rawQuery": false,
         "refId": "A",
         "resultFormat": "time_series",
@@ -66,7 +66,7 @@
               "params": [
                 "1s"
               ],
-              "type": "derivative"
+              "type": "non_negative_derivative"
             },
             {
               "params": [
@@ -86,7 +86,7 @@
               "params": [
                 "1s"
               ],
-              "type": "derivative"
+              "type": "non_negative_derivative"
             },
             {
               "params": [

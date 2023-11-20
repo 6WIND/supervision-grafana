@@ -72,7 +72,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
@@ -92,7 +92,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
@@ -112,7 +112,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
@@ -132,7 +132,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]

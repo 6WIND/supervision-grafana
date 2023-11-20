@@ -42,7 +42,7 @@
       "measurement": "fp-cg-nat-stats",
       "orderByTime": "ASC",
       "policy": "default",
-      "query": "SELECT derivative(\"block-allocations\", 1s) FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "query": "SELECT non_negative_derivative(\"block-allocations\", 1s) FROM \"fp-cg-nat-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
       "rawQuery": false,
       "refId": "A",
       "resultFormat": "time_series",

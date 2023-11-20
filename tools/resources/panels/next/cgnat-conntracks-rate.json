@@ -40,7 +40,7 @@
       "measurement": "fp-conntrack-stats",
       "orderByTime": "ASC",
       "policy": "default",
-      "query": "SELECT state  FROM (SELECT derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
+      "query": "SELECT state  FROM (SELECT non_negative_derivative(\"state-allocations\", 1s) as \"state\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
       "rawQuery": false,
       "refId": "A",
       "resultFormat": "time_series",
@@ -53,7 +53,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
@@ -73,7 +73,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
@@ -105,7 +105,7 @@
       "measurement": "fp-cg-nat-stats",
       "orderByTime": "ASC",
       "policy": "default",
-      "query": "SELECT nat FROM (SELECT derivative(\"nat-allocations\", 1s) as \"nat\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
+      "query": "SELECT nat FROM (SELECT non_negative_derivative(\"nat-allocations\", 1s) as \"nat\" FROM \"fp-cg-nat-stats\" WHERE $timeFilter) ",
       "rawQuery": false,
       "refId": "B",
       "resultFormat": "time_series",
@@ -118,7 +118,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
@@ -138,7 +138,7 @@
             ]
           },
           {
-            "type": "derivative",
+            "type": "non_negative_derivative",
             "params": [
               "1s"
             ]
