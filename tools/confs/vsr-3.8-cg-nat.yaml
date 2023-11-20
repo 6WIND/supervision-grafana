@@ -14,12 +14,10 @@ dashboards:
         panels:
           - base-network-nic-info
           - base-network-traffic
-          - base-network-twamp-stats
     templating:
       - file: host
       - file: fpcpus
       - file: interfaces
-      - file: twamp-sessions
 
   overview:
     enabled: yes
@@ -62,10 +60,6 @@ dashboards:
         panels:
           - debug-fp-ip
           - debug-fp-ip6
-      - title: FP tunnels
-        panels:
-          - debug-fp-gre
-          - debug-fp-vxlan
       - title: FP to Linux
         panels:
           - debug-fp-exceptions
