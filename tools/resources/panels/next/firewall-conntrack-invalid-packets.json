@@ -1,7 +1,6 @@
 {
     "datasource": {
-        "type": "influxdb",
-        "uid": "ff27b98c-2277-4a00-b9f9-fa1b7ba59672"
+        "type": "influxdb"
     },
     "fieldConfig": {
         "defaults": {
@@ -77,8 +76,7 @@
         {
             "alias": "$col",
             "datasource": {
-                "type": "influxdb",
-                "uid": "ff27b98c-2277-4a00-b9f9-fa1b7ba59672"
+                "type": "influxdb"
             },
             "groupBy": [],
             "measurement": "fp-conntrack-stats",

@@ -4,7 +4,6 @@
   "dashLength": 10,
   "dashes": false,
   "datasource": {
-    "uid": "d76c2252-d830-45de-b4e8-cfbd4d12375c",
     "type": "influxdb"
   },
   "fill": 1,
@@ -50,7 +49,6 @@
   "targets": [
     {
       "datasource": {
-        "uid": "d76c2252-d830-45de-b4e8-cfbd4d12375c",
         "type": "influxdb"
       },
       "refId": "A",

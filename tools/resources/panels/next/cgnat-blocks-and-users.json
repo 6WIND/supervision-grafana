@@ -1,6 +1,5 @@
 {
   "datasource": {
-    "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
     "type": "influxdb"
   },
   "aliasColors": {},
@@ -27,7 +26,6 @@
   "targets": [
     {
       "datasource": {
-        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
         "type": "influxdb"
       },
       "alias": "block",
@@ -70,7 +68,6 @@
     },
     {
       "datasource": {
-        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a",
         "type": "influxdb"
       },
       "alias": "user",

@@ -1,6 +1,5 @@
 {
   "datasource": {
-    "uid": "dec21ac5-64d1-4c2f-bc48-0d3de7f6a2cb",
     "type": "influxdb"
   },
   "aliasColors": {},
@@ -37,8 +36,7 @@
   "targets": [
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a"
+        "type": "influxdb"
       },
       "alias": "$col",
       "groupBy": [],
@@ -186,8 +184,7 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a"
+        "type": "influxdb"
       },
       "alias": "$col",
       "groupBy": [],

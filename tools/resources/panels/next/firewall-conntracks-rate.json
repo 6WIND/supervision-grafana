@@ -1,6 +1,5 @@
 {
     "datasource": {
-      "uid": "b8428bf0-392b-4986-b14c-8f60e713a6fe",
       "type": "influxdb"
     },
     "aliasColors": {},
@@ -42,8 +41,7 @@
     "targets": [
       {
         "datasource": {
-          "type": "influxdb",
-          "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a"
+          "type": "influxdb"
         },
         "alias": "$col",
         "dsType": "influxdb",

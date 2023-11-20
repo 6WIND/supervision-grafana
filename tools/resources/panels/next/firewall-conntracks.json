@@ -1,6 +1,5 @@
 {
   "datasource": {
-    "uid": "adacb6e5-4cf2-4a59-a66d-35e1a37dad1f",
     "type": "influxdb"
   },
   "aliasColors": {},
@@ -37,8 +36,7 @@
   "targets": [
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "bc70f2cd-ce24-43a6-8814-c95a8352338a"
+        "type": "influxdb"
       },
       "alias": "conntrack",
       "dsType": "influxdb",
