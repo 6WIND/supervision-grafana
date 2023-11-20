@@ -21,7 +21,7 @@ fi
 # Start grafana/influxdb
 docker-compose up -d
 
-# Configure grafana according to provided yml configuration file
+# Configure grafana according to provided yaml configuration file
 tools/configure_grafana.py $(realpath $1)
 
 echo

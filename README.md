@@ -17,7 +17,7 @@ and simple use the start script by giving the configuration file to use.
 # apt-get install docker-compose python3-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana
-$ ./start tools/confs/vsr-3.7.yml
+$ ./start tools/confs/vsr-3.7.yaml
 Creating network "supervision-grafana_monitoring" with the default driver
 Pulling influxdb (influxdb:1.7.10)...
 1.7.10: Pulling from library/influxdb
@@ -87,13 +87,13 @@ The list of this existing configuration files can be listed by simply called the
 $ ./start
 Usage: ./start [conf_file]
 Existing configuration file are:
-./tools/confs/6windgate-4.33.yml
-./tools/confs/6windgate-5.6.yml
-./tools/confs/vsr-3.5.yml
-./tools/confs/vsr-3.7-cg-nat.yml
-./tools/confs/vsr-3.7.yml
-./tools/confs/vsr-3.8-cg-nat.yml
-./tools/confs/vsr-3.8.yml
+./tools/confs/6windgate-4.33.yaml
+./tools/confs/6windgate-5.6.yaml
+./tools/confs/vsr-3.5.yaml
+./tools/confs/vsr-3.7-cg-nat.yaml
+./tools/confs/vsr-3.7.yaml
+./tools/confs/vsr-3.8-cg-nat.yaml
+./tools/confs/vsr-3.8.yaml
 ```
 
 Configuration files can be stored anywhere but only configuration file present in the [tools/confs](./tools/confs) directory are listed
@@ -110,7 +110,7 @@ The InfluxDB container uses the ``influxdb/data`` directory to store its databas
 Using an existing InfluxDB/Grafana installation
 ===============================================
 
-If you already have ``Grafana`` installed, you can use [tools/configure_grafana.py](./tools/configure_grafana.py) directly. You need to configure the yml configuration file (an existing one from [tools/confs](./tools/confs) directory or your own) to remove the datasources, and make sure that the grafana parameters suit your needs.
+If you already have ``Grafana`` installed, you can use [tools/configure_grafana.py](./tools/configure_grafana.py) directly. You need to configure the yaml configuration file (an existing one from [tools/confs](./tools/confs) directory or your own) to remove the datasources, and make sure that the grafana parameters suit your needs.
 
 ```yaml
 datasources:
@@ -127,7 +127,7 @@ The generated dashboards currently need the ``InfluxDB`` source to be called 'in
 Dashboard configuration
 =======================
 
-Here is an example of how an overview dashboard could be defined in the yml configuration file.
+Here is an example of how an overview dashboard could be defined in the yaml configuration file.
 
 ```yaml
 dashboards:
