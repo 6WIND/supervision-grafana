@@ -42,6 +42,10 @@ def generate_dashboard(name, dashboards, datasource):
         templates = master.get('templating', []) + templates
 
     data['title'] = dashboard['title']
+    if 'refresh' in dashboard:
+        data['refresh'] = dashboard['refresh']
+    if 'time-from' in dashboard:
+        data['time']['from'] = dashboard['time-from']
 
     for template in templates:
         template_data = {}
