@@ -207,6 +207,21 @@ def upload_dashboards(session, config, default_datasource):
         print(dashboard_post.text)
 
 #------------------------------------------------------------------------------
+def set_dashboard_theme(session, config):
+    """
+    Set the theme (light/dark).
+    """
+    theme = config['grafana'].get('theme')
+    if not theme:
+        return
+
+    config_patch = session.patch(
+        os.path.join(get_grafana_url(config), 'api', 'user', 'preferences'),
+        data=json.dumps({'theme': theme}),
+            headers={'content-type': 'application/json'},
+    )
+
+#------------------------------------------------------------------------------
 def main():
     """
     Main.
@@ -223,6 +238,7 @@ def main():
 
     default_datasource = upload_datasources(session, config)
     upload_dashboards(session, config, default_datasource)
+    set_dashboard_theme(session, config)
 
 if __name__ == '__main__':
     main()
