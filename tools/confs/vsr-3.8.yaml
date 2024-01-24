@@ -155,6 +155,38 @@ dashboards:
           - next/cgnat-packet-race-cases:
               span: 6
 
+  ddos:
+    inherits: base
+    enabled: yes
+    title: DDoS protection
+    templating:
+      - file: filling
+        values:
+          - ddos-entries
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: FP table $filling
+        panels:
+          - base-filling-pie
+          - base-filling-history
+        repeat: filling
+      - title: DDoS protection statistics
+        panels:
+          - next/ddos-error-stats:
+              span: 6
+          - next/ddos-global-stats:
+              span: 6
+          - next/ddos-source-stats:
+              span: 6
+          - next/ddos-dest-stats:
+              span: 6
+
   firewall:
     inherits: base
     enabled: yes

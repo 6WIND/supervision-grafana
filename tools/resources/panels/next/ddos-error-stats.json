@@ -1,0 +1,196 @@
+{
+  "aliasColors": {},
+  "dashLength": 10,
+  "datasource": "influxdb",
+  "fill": 1,
+  "id": 20,
+  "legend": {
+    "alignAsTable": false,
+    "avg": false,
+    "current": false,
+    "hideZero": false,
+    "max": false,
+    "min": false,
+    "rightSide": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "fp-ddos-stats.Whitelist hits",
+      "yaxis": 2
+    }
+  ],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-ddos-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "pool-shortage-error"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "Pool shortage errors"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "icmp-header-error"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "ICMP header errors"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "tcp-header-error"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "TCP header errors"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "udp-header-error"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "UDP header errors"
+            ]
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "refId": "B",
+      "hide": false,
+      "policy": "default",
+      "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [
+        {
+          "key": "host",
+          "value": "/^$host$/",
+          "operator": "=~"
+        }
+      ],
+      "groupBy": [],
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "whitelist-hit"
+            ]
+          },
+          {
+            "type": "non_negative_derivative",
+            "params": [
+              "1s"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "Whitelist hits"
+            ]
+          }
+        ]
+      ],
+      "measurement": "fp-ddos-stats"
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "Errors",
+  "tooltip": {
+    "shared": true,
+    "sort": 1,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "buckets": null,
+    "mode": "time",
+    "name": null,
+    "show": true,
+    "values": []
+  },
+  "yaxes": [
+    {
+      "decimals": null,
+      "format": "none",
+      "label": "",
+      "logBase": 1,
+      "max": null,
+      "min": "0",
+      "show": true
+    },
+    {
+      "format": "pps",
+      "label": "",
+      "logBase": 1,
+      "max": null,
+      "min": "0",
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false,
+    "alignLevel": null
+  },
+  "bars": false,
+  "dashes": false,
+  "fillGradient": 0,
+  "hiddenSeries": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null
+}
