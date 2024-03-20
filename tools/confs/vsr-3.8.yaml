@@ -121,10 +121,10 @@ dashboards:
       - file: host
       - file: fpcpus
 
-  cgnat:
+  cgnat+firewall:
     inherits: base
     enabled: yes
-    title: cg-nat
+    title: cg-nat+firewall
     templating:
       - file: filling
         values:
@@ -148,6 +148,17 @@ dashboards:
           - next/cgnat-blocks-and-users
           - next/cgnat-blocks-and-users-rate
           - next/cgnat-block-and-user-allocation-failures
+      - title: Firewall
+        panels:
+        - next/firewall-actions
+        - next/firewall-accepted-packets-rate
+        - next/firewall-dropped-packets-rate
+      - title: Nat
+        panels:
+          - next/cgnat-hairpinning-stats:
+              span: 6
+          - next/cgnat-packet-race-cases:
+              span: 6
       - title: Conntracks
         panels:
           - next/cgnat-conntracks
@@ -159,42 +170,6 @@ dashboards:
               span: 6
           - next/cgnat-port-allocation-failures:
               span: 6
-      - title: Packets stats
-        panels:
-          - next/cgnat-hairpinning-stats:
-              span: 6
-          - next/cgnat-packet-race-cases:
-              span: 6
-
-  firewall:
-    inherits: base
-    enabled: yes
-    title: firewall
-    templating:
-      - file: filling
-        values:
-          - fp-conntracks
-    rows:
-      - title: Processes
-        panels:
-          - base-process-usage
-          - base-process-memory-usage
-      - title: Disks
-        panels:
-          - base-disk-usage
-      - title: Fp Filling
-        panels:
-          - base-filling-pie-repeat
-      - title: Conntracks
-        panels:
-         - next/firewall-conntracks
-         - next/firewall-conntracks-rate
-         - next/firewall-conntrack-invalid-packets
-      - title: Firewall
-        panels:
-        - next/firewall-actions
-        - next/firewall-accepted-packets-rate
-        - next/firewall-dropped-packets-rate
 
   router:
     inherits: base
