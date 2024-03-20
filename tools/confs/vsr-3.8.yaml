@@ -17,11 +17,11 @@ dashboards:
           - base-license-throughput
           - base-license-cgnat
           - base-license-ipsec
-          - base-network-twamp-stats
       - title: Network
         panels:
           - base-network-nic-info
           - base-network-traffic
+          - base-network-twamp-stats
       - title: DDoS protection statistics
         panels:
           - next/ddos-error-stats:
