@@ -26,7 +26,7 @@
   "span": 6,
   "targets": [
     {
-      "alias": "users",
+      "alias": "$col",
       "dsType": "influxdb",
       "groupBy": [],
       "measurement": "system-user-count",
@@ -37,10 +37,30 @@
       "select": [
         [
           {
+            "type": "field",
             "params": [
               "system:user-count"
-            ],
-            "type": "field"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "users < 3.8"
+            ]
+          }
+        ],
+        [
+          {
+            "type": "field",
+            "params": [
+              "session-count"
+            ]
+          },
+          {
+            "type": "alias",
+            "params": [
+              "users"
+            ]
           }
         ]
       ],
@@ -122,7 +142,7 @@
         "fields": {},
         "conversions": [
           {
-            "targetField": "users",
+            "targetField": "users < 3.8",
             "destinationType": "number"
           }
         ]
