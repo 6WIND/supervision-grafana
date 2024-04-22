@@ -155,6 +155,8 @@ dashboards:
         - next/firewall-dropped-packets-rate
       - title: Nat
         panels:
+          - next/cgnat-nat-allocation-and-port-overloading:
+              span: 6
           - next/cgnat-hairpinning-stats:
               span: 6
           - next/cgnat-packet-race-cases:
