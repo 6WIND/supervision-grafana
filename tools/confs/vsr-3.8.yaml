@@ -24,13 +24,13 @@ dashboards:
           - base-network-twamp-stats
       - title: DDoS protection statistics
         panels:
-          - next/ddos-error-stats:
+          - ddos-error-stats:
               span: 6
-          - next/ddos-global-stats:
+          - ddos-global-stats:
               span: 6
-          - next/ddos-source-stats:
+          - ddos-source-stats:
               span: 6
-          - next/ddos-dest-stats:
+          - ddos-dest-stats:
               span: 6
         collapse: yes
     templating:
@@ -145,32 +145,32 @@ dashboards:
           - base-filling-pie-repeat
       - title: Blocks and Users
         panels:
-          - next/cgnat-blocks-and-users
-          - next/cgnat-blocks-and-users-rate
-          - next/cgnat-block-and-user-allocation-failures
+          - cgnat-blocks-and-users
+          - cgnat-blocks-and-users-rate
+          - cgnat-block-and-user-allocation-failures
       - title: Firewall
         panels:
-        - next/firewall-actions
-        - next/firewall-accepted-packets-rate
-        - next/firewall-dropped-packets-rate
+        - firewall-actions
+        - firewall-accepted-packets-rate
+        - firewall-dropped-packets-rate
       - title: Nat
         panels:
-          - next/cgnat-nat-allocation-and-port-overloading:
+          - cgnat-nat-allocation-and-port-overloading:
               span: 6
-          - next/cgnat-hairpinning-stats:
+          - cgnat-hairpinning-stats:
               span: 6
-          - next/cgnat-packet-race-cases:
+          - cgnat-packet-race-cases:
               span: 6
       - title: Conntracks
         panels:
-          - next/cgnat-conntracks
-          - next/cgnat-conntracks-rate
-          - next/cgnat-conntrack-allocation-failures
+          - cgnat-conntracks
+          - cgnat-conntracks-rate
+          - cgnat-conntrack-allocation-failures
       - title: Conntracks Failures
         panels:
-          - next/cgnat-invalid-packets:
+          - cgnat-invalid-packets:
               span: 6
-          - next/cgnat-port-allocation-failures:
+          - cgnat-port-allocation-failures:
               span: 6
 
   router:
