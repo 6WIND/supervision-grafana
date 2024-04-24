@@ -60,7 +60,7 @@ Then, on your 6WIND product, enter the CLI to configure the system to send data 
 
 ```console
 vrouter> edit running
-vrouter running config# system kpi
+vrouter running config# / vrf main kpi telegraf metrics template all
 vrouter running kpi# / vrf main kpi telegraf influxdb-output url http://<monitoring-server-ip>:8086 database telegraf
 vrouter running kpi# commit
 ```
