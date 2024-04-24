@@ -17,39 +17,41 @@ and simple use the start script by giving the configuration file to use.
 # apt-get install docker-compose python3-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana
-$ ./start tools/confs/vsr-3.7.yaml
+$ ./start tools/confs/vsr-3.8.yaml
 Creating network "supervision-grafana_monitoring" with the default driver
-Pulling influxdb (influxdb:1.7.10)...
-1.7.10: Pulling from library/influxdb
-16cf3fa6cb11: Pull complete
-3ddd031622b3: Pull complete
-69c3fcab77df: Pull complete
-25737831bed1: Pull complete
-f7cb4946ee1e: Pull complete
-1620e475f8f1: Pull complete
-1cf7b9d4576e: Pull complete
-f8d2c0a67069: Pull complete
-Digest: sha256:d1f588db9e015e304ee5174322655e193b3706db947c9b3205b01dbba97794c8
-Status: Downloaded newer image for influxdb:1.7.10
-Pulling grafana (grafana/grafana:6.6.2)...
-6.6.2: Pulling from grafana/grafana
-4167d3e14976: Pull complete
-f5de5b425a84: Pull complete
-0566de8a7966: Pull complete
-21558318b453: Pull complete
-9c0705e53d50: Pull complete
-0cb366e38dc9: Pull complete
-9d6a49548b66: Pull complete
-6a9f63007f4a: Pull complete
-Digest: sha256:4282e80b18bb148dcc9745a337c7008d4c8397b369933cfb4e66d15f363d1818
-Status: Downloaded newer image for grafana/grafana:6.6.2
+Pulling influxdb (influxdb:1.8.10)...
+1.8.10: Pulling from library/influxdb
+646e886fa3cf: Pull complete
+c5a360c5f105: Pull complete
+535642cb98ee: Pull complete
+1aca97f2aa3d: Pull complete
+3df356749afd: Pull complete
+7f1dbc2c143c: Pull complete
+3487689ee2ff: Pull complete
+Digest: sha256:98b05bb813c143a430f8b2eca8d59b5f58bffd812a9359310093901ce559366b
+Status: Downloaded newer image for influxdb:1.8.10
+Pulling grafana (grafana/grafana:9.5.3)...
+9.5.3: Pulling from grafana/grafana
+f56be85fc22e: Pull complete
+2fe2fda407f1: Pull complete
+6789b114b6ea: Pull complete
+81dab1f0499f: Pull complete
+1af72664dc17: Pull complete
+94fae322688b: Pull complete
+692464e6f3e6: Pull complete
+da5365e3a243: Pull complete
+fe21d8ff0cf2: Pull complete
+Digest: sha256:35e8e1b76912e4c3bbaa8de01e730aad310acdb51ea0903f84bd098b12b8d861
+Status: Downloaded newer image for grafana/grafana:9.5.3
 Creating influxdb ... done
 Creating grafana  ... done
-{"datasource":{"id":1,"orgId":1,"name":"influxdb","type":"influxdb","typeLogoUrl":"","access":"proxy","url":"http://influxdb:8086","password":"","user":"","database":"telegraf","basicAuth":false,"basicAuthUser":"","basicAuthPassword":"","withCredentials":false,"isDefault":true,"jsonData":{},"secureJsonFields":{},"version":1,"readOnly":false},"id":1,"message":"Datasource added","name":"influxdb"}
-{"id":1,"slug":"overview","status":"success","uid":"HdvzZh3Vz","url":"/d/HdvzZh3Vz/overview","version":1}
-{"id":2,"slug":"debug","status":"success","uid":"E5vkWh3Vz","url":"/d/E5vkWh3Vz/debug","version":1}
-{"id":3,"slug":"cg-nat","status":"success","uid":"RhDzZh3Vk","url":"/d/RhDzZh3Vk/cg-nat","version":1}
-{"id":4,"slug":"router","status":"success","uid":"OAvkWh34z","url":"/d/OAvkWh34z/router","version":1}
+{"datasource":{"id":1,"uid":"d7e39504-41c3-4f71-b615-70d3895a4bab","orgId":1,"name":"influxdb","type":"influxdb","typeLogoUrl":"","access":"proxy","url":"http://influxdb:8086","user":"","database":"telegraf","basicAuth":false,"basicAuthUser":"","withCredentials":false,"isDefault":true,"jsonData":{},"secureJsonFields":{},"version":1,"readOnly":false},"id":1,"message":"Datasource added","name":"influxdb"}
+{"id":1,"slug":"overview","status":"success","uid":"dac5535c-f468-41f1-80c0-183ea60107cb","url":"/d/dac5535c-f468-41f1-80c0-183ea60107cb/overview","version":1}
+{"id":2,"slug":"debug","status":"success","uid":"f68a9276-f66b-43bb-9387-fea91b3093df","url":"/d/f68a9276-f66b-43bb-9387-fea91b3093df/debug","version":1}
+{"id":3,"slug":"cg-nat","status":"success","uid":"a8184370-5d23-470b-90c6-55516d9ddc03","url":"/d/a8184370-5d23-470b-90c6-55516d9ddc03/cg-nat","version":1}
+{"id":4,"slug":"firewall","status":"success","uid":"b307d3e1-c470-4949-9ab9-47948359b4c5","url":"/d/b307d3e1-c470-4949-9ab9-47948359b4c5/firewall","version":1}
+{"id":5,"slug":"router","status":"success","uid":"b9e35b7c-1904-49dc-a4a4-9fce4b3fb457","url":"/d/b9e35b7c-1904-49dc-a4a4-9fce4b3fb457/router","version":1}
+
 
 Go to http://localhost:3000 for Grafana dashboard (admin/admin)
 ```
