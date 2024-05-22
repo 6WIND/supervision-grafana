@@ -7,6 +7,7 @@ dashboards:
         panels:
           - base-uptime
           - base-fp-status
+          - base-alarm-raised
           - base-ram-usage
           - base-linux-cpu-usage
           - base-fp-cpu-usage

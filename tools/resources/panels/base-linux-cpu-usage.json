@@ -25,7 +25,7 @@
   "renderer": "flot",
   "seriesOverrides": [],
   "spaceLength": 10,
-  "span": 4,
+  "span": 3,
   "stack": false,
   "steppedLine": false,
   "targets": [
