@@ -1,0 +1,130 @@
+{
+  "datasource": {
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "description": "",
+  "fieldConfig": {
+    "defaults": {
+      "unit": "watt"
+    },
+    "overrides": []
+  },
+  "fill": 1,
+  "fillGradient": 0,
+  "gridPos": {
+    "h": 6,
+    "w": 24,
+    "x": 0,
+    "y": 13
+  },
+  "hiddenSeries": false,
+  "id": 3,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
+  "percentage": false,
+  "pluginVersion": "9.5.3",
+  "pointradius": 5,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "$$hashKey": "object:10553",
+      "alias": "total",
+      "dashes": true
+    }
+  ],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "cpu-power",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "system-power",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "global-cpu-power"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              10
+            ],
+            "type": "moving_average"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "CPU Power",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "mode": "time",
+    "show": true,
+    "values": [],
+    "name": null,
+    "buckets": null
+  },
+  "yaxes": [
+    {
+      "$$hashKey": "object:10560",
+      "format": "watt",
+      "logBase": 1,
+      "show": true
+    },
+    {
+      "$$hashKey": "object:10561",
+      "format": "short",
+      "logBase": 1,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false
+  },
+  "timeFrom": null,
+  "timeShift": null
+}

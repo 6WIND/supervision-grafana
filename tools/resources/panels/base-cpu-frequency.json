@@ -1,0 +1,126 @@
+{
+  "datasource": {
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "dashLength": 10,
+  "fill": 1,
+  "gridPos": {
+    "h": 6,
+    "w": 24,
+    "x": 0,
+    "y": 7
+  },
+  "id": 4,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "links": [],
+  "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
+  "pluginVersion": "9.5.3",
+  "pointradius": 5,
+  "renderer": "flot",
+  "seriesOverrides": [],
+  "spaceLength": 10,
+  "targets": [
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "alias": "$tag_cpu",
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "cpu"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "system-power",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "per-cpu-frequency"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [
+              "* 1000000"
+            ],
+            "type": "math"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "CPU frequency",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "transformations": [],
+  "type": "graph",
+  "xaxis": {
+    "mode": "time",
+    "show": true,
+    "values": [],
+    "name": null,
+    "buckets": null
+  },
+  "yaxes": [
+    {
+      "$$hashKey": "object:11244",
+      "format": "hertz",
+      "logBase": 1,
+      "max": "2200000000",
+      "show": true
+    },
+    {
+      "$$hashKey": "object:11245",
+      "format": "short",
+      "logBase": 1,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false
+  },
+  "bars": false,
+  "dashes": false,
+  "fillGradient": 0,
+  "hiddenSeries": false,
+  "percentage": false,
+  "points": false,
+  "stack": false,
+  "steppedLine": false,
+  "timeFrom": null,
+  "timeShift": null
+}

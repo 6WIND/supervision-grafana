@@ -23,6 +23,10 @@ dashboards:
           - base-network-nic-info
           - base-network-traffic
           - base-network-twamp-stats
+      - title: Power
+        panels:
+          - base-cpu-power
+          - base-cpu-frequency
       - title: DDoS protection statistics
         panels:
           - ddos-error-stats:
