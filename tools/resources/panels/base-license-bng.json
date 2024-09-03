@@ -1,0 +1,165 @@
+{
+  "datasource": {
+    "type": "influxdb"
+  },
+  "aliasColors": {},
+  "bars": false,
+  "dashLength": 10,
+  "dashes": false,
+  "fieldConfig": {
+    "defaults": {
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ]
+    },
+    "overrides": []
+  },
+  "fill": 1,
+  "fillGradient": 0,
+  "gridPos": {
+    "h": 7,
+    "w": 8,
+    "x": 8,
+    "y": 16
+  },
+  "hiddenSeries": false,
+  "id": 44,
+  "legend": {
+    "avg": false,
+    "current": false,
+    "max": false,
+    "min": false,
+    "show": true,
+    "total": false,
+    "values": false
+  },
+  "lines": true,
+  "linewidth": 1,
+  "nullPointMode": "null",
+  "options": {
+    "alertThreshold": true
+  },
+  "percentage": false,
+  "pluginVersion": "9.5.3",
+  "pointradius": 2,
+  "points": false,
+  "renderer": "flot",
+  "seriesOverrides": [
+    {
+      "alias": "max",
+      "dashes": true
+    }
+  ],
+  "spaceLength": 10,
+  "stack": false,
+  "steppedLine": false,
+  "targets": [
+    {
+      "alias": "max",
+      "datasource": {
+        "type": "influxdb",
+        "uid": "a2b73736-8b6d-49a3-965b-105f8774fd55"
+      },
+      "groupBy": [],
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-allowed"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "bng-pppoe"
+        }
+      ]
+    },
+    {
+      "alias": "current",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-used"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "bng-pppoe"
+        }
+      ]
+    }
+  ],
+  "thresholds": [],
+  "timeRegions": [],
+  "title": "BNG Sessions",
+  "tooltip": {
+    "shared": true,
+    "sort": 0,
+    "value_type": "individual"
+  },
+  "type": "graph",
+  "xaxis": {
+    "mode": "time",
+    "show": true,
+    "values": [],
+    "name": null,
+    "buckets": null
+  },
+  "yaxes": [
+    {
+      "format": "short",
+      "logBase": 1,
+      "show": true
+    },
+    {
+      "format": "short",
+      "logBase": 1,
+      "show": true
+    }
+  ],
+  "yaxis": {
+    "align": false
+  },
+  "timeFrom": null,
+  "timeShift": null
+}

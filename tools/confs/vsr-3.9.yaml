@@ -18,6 +18,7 @@ dashboards:
           - base-license-throughput
           - base-license-cgnat
           - base-license-ipsec
+          - base-license-bng
       - title: Network
         panels:
           - base-network-nic-info
@@ -177,6 +178,30 @@ dashboards:
               span: 6
           - cgnat-port-allocation-failures:
               span: 6
+
+  bng:
+    inherits: base
+    enabled: yes
+    title: bng
+    templating:
+      - file: filling
+        values:
+          - ipoe-sessions
+          - pppoe-sessions
+          - interfaces
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: FP table $filling
+        panels:
+          - base-filling-pie
+          - base-filling-history
+        repeat: filling
 
   router:
     inherits: base
