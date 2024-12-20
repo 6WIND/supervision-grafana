@@ -102,6 +102,78 @@
           "value": "/^$host$/"
         }
       ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "refId": "C",
+      "hide": false,
+      "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [
+        {
+          "key": "host::tag",
+          "value": "/^$host$/",
+          "operator": "=~"
+        },
+        {
+          "key": "licensed-feature::tag",
+          "value": "product",
+          "operator": "=",
+          "condition": "AND"
+        }
+      ],
+      "groupBy": [],
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "licensed-feature-counter-allowed"
+            ]
+          }
+        ]
+      ],
+      "policy": "default",
+      "measurement": "product-license",
+      "alias": "max"
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "refId": "D",
+      "hide": false,
+      "resultFormat": "time_series",
+      "orderByTime": "ASC",
+      "tags": [
+        {
+          "key": "host::tag",
+          "value": "/^$host$/",
+          "operator": "=~"
+        },
+        {
+          "key": "licensed-feature::tag",
+          "value": "product",
+          "operator": "=",
+          "condition": "AND"
+        }
+      ],
+      "groupBy": [],
+      "select": [
+        [
+          {
+            "type": "field",
+            "params": [
+              "licensed-feature-counter-used"
+            ]
+          }
+        ]
+      ],
+      "policy": "default",
+      "measurement": "product-license",
+      "alias": "6h average"
     }
   ],
   "thresholds": [],
