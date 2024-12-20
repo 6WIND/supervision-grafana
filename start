@@ -18,6 +18,11 @@ if [ -z "${1}" ] || ! [ -f $1 ]; then
 	usage
 fi
 
+export DOCKER_UID=$(id -u)
+export DOCKER_GID=$(id -g)
+
+mkdir -p influxdb/data
+
 # Start grafana/influxdb
 docker-compose up -d
 

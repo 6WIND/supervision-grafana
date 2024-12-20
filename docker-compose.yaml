@@ -19,7 +19,7 @@ services:
       - influxdb
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:1.8.10
+    image: influxdb:1.11.8
     container_name: influxdb
     networks:
       - monitoring
@@ -28,6 +28,7 @@ services:
       - ./influxdb/data:/var/lib/influxdb
       # Mount for influxdb configuration
       - ./influxdb/config/:/etc/influxdb/
+    user: "${DOCKER_UID}:${DOCKER_GID}"
     ports:
       # The API for InfluxDB is served on port 8086
       - "8086:8086"
