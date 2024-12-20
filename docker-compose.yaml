@@ -2,7 +2,7 @@ version: '2'
 services:
   grafana:
     # Full tag list: https://hub.docker.com/r/grafana/grafana/tags/
-    image: grafana/grafana:9.5.3
+    image: grafana/grafana:11.4.0
     container_name: grafana
     environment:
       GF_SECURITY_ADMIN_USER: admin
