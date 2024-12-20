@@ -2,31 +2,33 @@
   "datasource": {
     "type": "influxdb"
   },
-  "aliasColors": {},
-  "dashLength": 10,
-  "fill": 1,
-  "id": 16,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
+  "gridPos": {
+    "x": 0,
+    "y": 63,
+    "w": 12,
+    "h": 7
   },
-  "lines": true,
-  "linewidth": 1,
   "links": [],
-  "nullPointMode": "null",
-  "pointradius": 5,
-  "renderer": "flot",
-  "seriesOverrides": [],
-  "spaceLength": 10,
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none"
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  },
+  "pluginVersion": "9.5.3",
   "span": 6,
   "targets": [
     {
       "alias": "$col",
+      "datasource": {
+        "type": "influxdb"
+      },
       "dsType": "influxdb",
       "groupBy": [],
       "measurement": "system-user-count",
@@ -37,30 +39,30 @@
       "select": [
         [
           {
-            "type": "field",
             "params": [
               "system:user-count"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "alias",
             "params": [
               "users < 3.8"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "session-count"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "alias",
             "params": [
               "users"
-            ]
+            ],
+            "type": "alias"
           }
         ]
       ],
@@ -70,83 +72,79 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ],
-      "datasource": {
-        "type": "influxdb"
-      }
+      ]
     }
   ],
-  "thresholds": [],
   "title": "User count",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
-  },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "decimals": null,
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": "0",
-      "show": true
-    },
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
-    }
-  ],
-  "gridPos": {
-    "x": 0,
-    "y": 61,
-    "w": 12,
-    "h": 7
-  },
-  "options": {
-    "alertThreshold": true
-  },
-  "pluginVersion": "9.5.3",
-  "yaxis": {
-    "align": false,
-    "alignLevel": null
-  },
-  "timeRegions": [],
-  "bars": false,
-  "dashes": false,
-  "percentage": false,
-  "points": false,
-  "stack": false,
-  "steppedLine": false,
-  "timeFrom": null,
-  "timeShift": null,
-  "fillGradient": 0,
-  "hiddenSeries": false,
   "transformations": [
     {
       "id": "convertFieldType",
       "options": {
-        "fields": {},
         "conversions": [
           {
-            "targetField": "users < 3.8",
-            "destinationType": "number"
+            "destinationType": "number",
+            "targetField": "users < 3.8"
           }
-        ]
+        ],
+        "fields": {}
       }
     }
-  ]
+  ],
+  "type": "timeseries",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "short",
+      "min": 0
+    },
+    "overrides": []
+  },
+  "timeFrom": null,
+  "timeShift": null
 }

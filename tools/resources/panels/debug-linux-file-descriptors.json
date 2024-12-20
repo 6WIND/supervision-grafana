@@ -1,35 +1,9 @@
 {
-  "aliasColors": {},
-  "bars": false,
-  "dashLength": 10,
-  "dashes": false,
-  "datasource": "influxdb",
-  "fill": 1,
-  "id": 14,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "hideEmpty": true,
-    "hideZero": true,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
+  "datasource": {
+    "type": "influxdb"
   },
-  "lines": true,
-  "linewidth": 1,
-  "links": [],
-  "nullPointMode": "null",
-  "percentage": false,
-  "pointradius": 5,
-  "points": false,
-  "renderer": "flot",
-  "seriesOverrides": [],
-  "spaceLength": 10,
   "span": 6,
-  "stack": false,
-  "steppedLine": false,
+  "links": [],
   "targets": [
     {
       "alias": "$tag_name",
@@ -74,42 +48,86 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
-  "thresholds": [],
-  "timeFrom": null,
-  "timeShift": null,
   "title": "Process file descriptors add/del",
-  "tooltip": {
-    "shared": true,
-    "sort": 2,
-    "value_type": "individual"
+  "type": "timeseries",
+  "gridPos": {
+    "x": 12,
+    "y": 49,
+    "w": 12,
+    "h": 7
   },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "desc"
     },
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
     }
-  ]
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "short"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "9.5.3",
+  "timeFrom": null,
+  "timeShift": null
 }

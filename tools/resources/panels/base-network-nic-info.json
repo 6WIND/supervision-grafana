@@ -1,121 +1,111 @@
 {
-  "columns": [],
-  "datasource": "influxdb",
-  "description": "On the selected time period.",
-  "fontSize": "100%",
-  "hideTimeOverride": false,
-  "id": 6,
-  "links": [],
-  "pageSize": null,
-  "scroll": true,
-  "showHeader": true,
-  "sort": {
-    "col": null,
-    "desc": false
+  "datasource": {
+    "type": "influxdb"
   },
+  "description": "On the selected time period.",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "align": "auto",
+        "cellOptions": {
+          "type": "color-text"
+        },
+        "inspect": false,
+        "filterable": false
+      },
+      "mappings": [
+        {
+          "options": {
+            "null": {
+              "index": 0,
+              "text": "-"
+            }
+          },
+          "type": "value"
+        }
+      ],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          }
+        ]
+      },
+      "color": {
+        "mode": "fixed",
+        "fixedColor": "#e0e0e0"
+      },
+      "noValue": "-",
+      "unit": "string"
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "Time"
+        },
+        "properties": [
+          {
+            "id": "custom.hidden",
+            "value": true
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "name"
+        },
+        "properties": []
+      }
+    ]
+  },
+  "gridPos": {
+    "h": 6,
+    "w": 24,
+    "x": 0,
+    "y": 24
+  },
+  "options": {
+    "showHeader": true,
+    "cellHeight": "sm",
+    "footer": {
+      "show": false,
+      "reducer": [
+        "sum"
+      ],
+      "countRows": false,
+      "fields": "",
+      "enablePagination": false
+    },
+    "frameIndex": 1,
+    "sortBy": [
+      {
+        "displayName": "name",
+        "desc": false
+      }
+    ]
+  },
+  "pluginVersion": "9.5.3",
   "span": 12,
-  "styles": [
-    {
-      "alias": "Time",
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "link": false,
-      "pattern": "Time",
-      "preserveFormat": false,
-      "type": "hidden"
-    },
-    {
-      "alias": "driver",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "pattern": "last",
-      "thresholds": [],
-      "type": "string",
-      "unit": "short"
-    },
-    {
-      "alias": "description",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "pattern": "last_1",
-      "thresholds": [],
-      "type": "string",
-      "unit": "short"
-    },
-    {
-      "alias": "model",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "link": false,
-      "pattern": "last_2",
-      "sanitize": false,
-      "thresholds": [],
-      "type": "string",
-      "unit": "short"
-    },
-    {
-      "alias": "pci",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "pattern": "last_3",
-      "thresholds": [],
-      "type": "number",
-      "unit": "short"
-    },
-    {
-      "alias": "",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "decimals": 2,
-      "pattern": "/.*/",
-      "thresholds": [],
-      "type": "number",
-      "unit": "short"
-    }
-  ],
   "targets": [
     {
-      "dsType": "influxdb",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
-            "name"
+            "name::tag"
           ],
           "type": "tag"
         }
       ],
       "measurement": "network-nic-hw-info",
       "orderByTime": "ASC",
-      "policy": "default",
-      "query": "SELECT last(\"driver\"), last(\"model\"),last(\"pci-address\")\n FROM \"network-nic-hw-info\" WHERE \"host\" =~ /^$host$/ GROUP BY \"name\"",
-      "rawQuery": false,
+      "policy": "autogen",
       "refId": "A",
       "resultFormat": "table",
       "select": [
@@ -129,6 +119,12 @@
           {
             "params": [],
             "type": "last"
+          },
+          {
+            "params": [
+              "driver"
+            ],
+            "type": "alias"
           }
         ],
         [
@@ -141,6 +137,12 @@
           {
             "params": [],
             "type": "last"
+          },
+          {
+            "params": [
+              "description"
+            ],
+            "type": "alias"
           }
         ],
         [
@@ -153,6 +155,12 @@
           {
             "params": [],
             "type": "last"
+          },
+          {
+            "params": [
+              "model"
+            ],
+            "type": "alias"
           }
         ],
         [
@@ -165,12 +173,18 @@
           {
             "params": [],
             "type": "last"
+          },
+          {
+            "params": [
+              "pci"
+            ],
+            "type": "alias"
           }
         ]
       ],
       "tags": [
         {
-          "key": "host",
+          "key": "host::tag",
           "operator": "=~",
           "value": "/^$host$/"
         }
@@ -178,6 +192,5 @@
     }
   ],
   "title": "Network interfaces",
-  "transform": "table",
   "type": "table"
 }

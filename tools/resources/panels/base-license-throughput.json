@@ -1,55 +1,25 @@
 {
-  "datasource": "influxdb",
-  "aliasColors": {},
-  "bars": false,
-  "dashLength": 10,
-  "dashes": false,
-  "fill": 1,
-  "fillGradient": 0,
+  "datasource": {
+    "type": "influxdb"
+  },
   "gridPos": {
-    "x": 4,
+    "x": 6,
     "y": 9,
-    "w": 4,
+    "w": 8,
     "h": 7
   },
-  "hiddenSeries": false,
-  "id": 8,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
-  },
-  "lines": true,
-  "linewidth": 1,
-  "nullPointMode": "null",
   "options": {
-    "dataLinks": [
-      {
-        "title": "",
-        "url": ""
-      }
-    ]
-  },
-  "percentage": false,
-  "pointradius": 2,
-  "points": false,
-  "renderer": "flot",
-  "seriesOverrides": [
-    {
-      "alias": "max",
-      "dashes": true
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none"
     },
-    {
-      "alias": "6h average"
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
     }
-  ],
-  "spaceLength": 10,
-  "stack": false,
-  "steppedLine": false,
+  },
   "targets": [
     {
       "alias": "max",
@@ -75,7 +45,10 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     },
     {
       "alias": "6h average",
@@ -101,120 +74,166 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
+    },
+    {
+      "alias": "max",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "C",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-allowed"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "product"
+        }
       ]
     },
     {
+      "alias": "6h average",
       "datasource": {
         "type": "influxdb"
       },
-      "refId": "C",
-      "hide": false,
-      "resultFormat": "time_series",
-      "orderByTime": "ASC",
-      "tags": [
-        {
-          "key": "host::tag",
-          "value": "/^$host$/",
-          "operator": "=~"
-        },
-        {
-          "key": "licensed-feature::tag",
-          "value": "product",
-          "operator": "=",
-          "condition": "AND"
-        }
-      ],
       "groupBy": [],
-      "select": [
-        [
-          {
-            "type": "field",
-            "params": [
-              "licensed-feature-counter-allowed"
-            ]
-          }
-        ]
-      ],
-      "policy": "default",
+      "hide": false,
       "measurement": "product-license",
-      "alias": "max"
-    },
-    {
-      "datasource": {
-        "type": "influxdb"
-      },
-      "refId": "D",
-      "hide": false,
-      "resultFormat": "time_series",
       "orderByTime": "ASC",
-      "tags": [
-        {
-          "key": "host::tag",
-          "value": "/^$host$/",
-          "operator": "=~"
-        },
-        {
-          "key": "licensed-feature::tag",
-          "value": "product",
-          "operator": "=",
-          "condition": "AND"
-        }
-      ],
-      "groupBy": [],
+      "policy": "default",
+      "refId": "D",
+      "resultFormat": "time_series",
       "select": [
         [
           {
-            "type": "field",
             "params": [
               "licensed-feature-counter-used"
-            ]
+            ],
+            "type": "field"
           }
         ]
       ],
-      "policy": "default",
-      "measurement": "product-license",
-      "alias": "6h average"
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        },
+        {
+          "condition": "AND",
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "product"
+        }
+      ]
     }
   ],
-  "thresholds": [],
-  "timeFrom": null,
-  "timeRegions": [],
-  "timeShift": null,
   "title": "Throughput",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
-  },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "format": "Gbits",
-      "label": "",
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true,
+  "type": "timeseries",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "links": [
+        {
+          "title": "",
+          "url": ""
+        }
+      ],
+      "unit": "Gbits",
       "decimals": 2
     },
-    {
-      "format": "Gbits",
-      "label": "",
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": false
-    }
-  ],
-  "yaxis": {
-    "align": false,
-    "alignLevel": null
-  }
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "max"
+        },
+        "properties": [
+          {
+            "id": "custom.lineStyle",
+            "value": {
+              "fill": "dash",
+              "dash": [
+                10,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "pluginVersion": "9.5.3",
+  "timeFrom": null,
+  "timeShift": null
 }

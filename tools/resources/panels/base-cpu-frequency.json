@@ -2,43 +2,32 @@
   "datasource": {
     "type": "influxdb"
   },
-  "aliasColors": {},
-  "dashLength": 10,
-  "fill": 1,
   "gridPos": {
-    "h": 6,
-    "w": 24,
-    "x": 0,
-    "y": 7
+    "x": 8,
+    "y": 46,
+    "w": 8,
+    "h": 7
   },
-  "id": 4,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
-  },
-  "lines": true,
-  "linewidth": 1,
   "links": [],
-  "nullPointMode": "null",
   "options": {
-    "alertThreshold": true
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none"
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
   },
   "pluginVersion": "9.5.3",
-  "pointradius": 5,
-  "renderer": "flot",
-  "seriesOverrides": [],
-  "spaceLength": 10,
   "targets": [
     {
+      "alias": "$tag_cpu",
       "datasource": {
         "type": "influxdb"
       },
-      "alias": "$tag_cpu",
       "dsType": "influxdb",
       "groupBy": [
         {
@@ -78,49 +67,63 @@
       ]
     }
   ],
-  "thresholds": [],
-  "timeRegions": [],
   "title": "CPU frequency",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
-  },
   "transformations": [],
-  "type": "graph",
-  "xaxis": {
-    "mode": "time",
-    "show": true,
-    "values": [],
-    "name": null,
-    "buckets": null
-  },
-  "yaxes": [
-    {
-      "$$hashKey": "object:11244",
-      "format": "hertz",
-      "logBase": 1,
-      "max": "2200000000",
-      "show": true
+  "type": "timeseries",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "hertz",
+      "max": 2200000000
     },
-    {
-      "$$hashKey": "object:11245",
-      "format": "short",
-      "logBase": 1,
-      "show": true
-    }
-  ],
-  "yaxis": {
-    "align": false
+    "overrides": []
   },
-  "bars": false,
-  "dashes": false,
-  "fillGradient": 0,
-  "hiddenSeries": false,
-  "percentage": false,
-  "points": false,
-  "stack": false,
-  "steppedLine": false,
   "timeFrom": null,
   "timeShift": null
 }

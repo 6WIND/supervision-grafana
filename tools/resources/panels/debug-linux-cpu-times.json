@@ -1,46 +1,27 @@
 {
-  "aliasColors": {},
-  "bars": false,
-  "cacheTimeout": null,
-  "dashes": false,
-  "dashLength": 10,
-  "datasource": "influxdb",
-  "decimals": 1,
-  "fill": 1,
-  "fillGradient": 0,
+  "datasource": {
+    "type": "influxdb"
+  },
   "gridPos": {
-    "h": 10,
-    "w": 24,
     "x": 0,
-    "y": 56
+    "y": 56,
+    "w": 24,
+    "h": 7
   },
-  "hiddenSeries": false,
-  "id": 18,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
-  },
-  "lines": true,
-  "linewidth": 1,
   "links": [],
-  "nullPointMode": "null",
   "options": {
-    "dataLinks": []
+    "tooltip": {
+      "mode": "multi",
+      "sort": "asc"
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
   },
-  "percentage": false,
-  "pluginVersion": "6.6.2",
-  "pointradius": 0.5,
-  "points": true,
-  "renderer": "flot",
-  "seriesOverrides": [],
-  "spaceLength": 10,
-  "stack": false,
-  "steppedLine": false,
+  "pluginVersion": "9.5.3",
   "targets": [
     {
       "groupBy": [
@@ -66,47 +47,69 @@
           }
         ]
       ],
-      "tags": []
+      "tags": [],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
-  "thresholds": [],
-  "timeFrom": null,
-  "timeRegions": [],
-  "timeShift": null,
   "title": "Linux CPU times",
-  "tooltip": {
-    "shared": true,
-    "sort": 1,
-    "value_type": "individual"
-  },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+  "type": "timeseries",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "always",
+        "pointSize": 3,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "links": [],
+      "unit": "short"
     },
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
-    }
-  ],
-  "yaxis": {
-    "align": false,
-    "alignLevel": null
-  }
+    "overrides": []
+  },
+  "cacheTimeout": null,
+  "timeFrom": null,
+  "timeShift": null
 }

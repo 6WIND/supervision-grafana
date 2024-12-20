@@ -1,35 +1,8 @@
 {
-  "aliasColors": {},
-  "dashLength": 10,
-  "datasource": "influxdb",
-  "fill": 1,
-  "id": 21,
-  "legend": {
-    "alignAsTable": false,
-    "avg": false,
-    "current": false,
-    "hideZero": false,
-    "max": false,
-    "min": false,
-    "rightSide": false,
-    "show": true,
-    "total": false,
-    "values": false
+  "datasource": {
+    "type": "influxdb"
   },
-  "lines": true,
-  "linewidth": 1,
   "links": [],
-  "nullPointMode": "null",
-  "pointradius": 5,
-  "renderer": "flot",
-  "seriesOverrides": [
-    {
-      "alias": "/.*.pps./",
-      "transform": "negative-Y",
-      "yaxis": 2
-    }
-  ],
-  "spaceLength": 10,
   "targets": [
     {
       "dsType": "influxdb",
@@ -43,370 +16,370 @@
       "select": [
         [
           {
-            "type": "field",
             "params": [
               "global-icmp-echo-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "ICMP echo [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-icmp-echo-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "ICMP echo [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-syn-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "TCP SYN [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-syn-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "TCP SYN [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-syn-ack-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "TCP SYN-ACK [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-syn-ack-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "TCP SYN-ACK [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-ack-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "TCP ACK [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-ack-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "TCP ACK [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-rst-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "TCP RST [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-tcp-rst-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "TCP RST [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-udp-dns-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "UDP DNS [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-udp-dns-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "UDP DNS [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-udp-quic-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "UDP QUIC [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-udp-quic-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "UDP QUIC [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-udp-raw-dropped-bytes"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "math",
             "params": [
               "* 8"
-            ]
+            ],
+            "type": "math"
           },
           {
-            "type": "alias",
             "params": [
               "UDP RAW [bps]"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "global-udp-raw-dropped-packets"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "UDP RAW [pps]"
-            ]
+            ],
+            "type": "alias"
           }
         ]
       ],
@@ -416,57 +389,104 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
-  "thresholds": [],
-  "timeRegions": [],
   "title": "Global protection drop statistics",
-  "tooltip": {
-    "shared": true,
-    "sort": 1,
-    "value_type": "individual"
+  "type": "timeseries",
+  "gridPos": {
+    "x": 12,
+    "y": 54,
+    "w": 12,
+    "h": 7
   },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "decimals": null,
-      "format": "bps",
-      "label": "",
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "asc"
     },
-    {
-      "format": "pps",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
     }
-  ],
-  "yaxis": {
-    "align": true,
-    "alignLevel": null
   },
-  "bars": false,
-  "dashes": false,
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "bps"
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byRegexp",
+          "options": "/.*.pps./"
+        },
+        "properties": [
+          {
+            "id": "custom.transform",
+            "value": "negative-Y"
+          },
+          {
+            "id": "unit",
+            "value": "pps"
+          }
+        ]
+      }
+    ]
+  },
+  "pluginVersion": "9.5.3",
   "description": "",
-  "fillGradient": 0,
-  "hiddenSeries": false,
-  "percentage": false,
-  "points": false,
-  "stack": false,
-  "steppedLine": false,
   "timeFrom": null,
   "timeShift": null
 }

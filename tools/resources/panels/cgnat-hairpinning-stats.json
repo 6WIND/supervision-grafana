@@ -2,41 +2,85 @@
   "datasource": {
     "type": "influxdb"
   },
-  "aliasColors": {},
-  "dashLength": 10,
-  "fill": 1,
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "links": [],
+      "unit": "short"
+    },
+    "overrides": []
+  },
   "gridPos": {
-    "x": 0,
-    "y": 79,
-    "w": 8,
+    "x": 12,
+    "y": 109,
+    "w": 12,
     "h": 7
   },
-  "id": 21,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
-  },
-  "lines": true,
-  "linewidth": 1,
-  "nullPointMode": "null",
   "options": {
-    "alertThreshold": true
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none"
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
   },
-  "pointradius": 2,
-  "renderer": "flot",
-  "seriesOverrides": [],
-  "spaceLength": 10,
+  "pluginVersion": "9.5.3",
   "targets": [
     {
+      "alias": "$col",
       "datasource": {
         "type": "influxdb"
       },
-      "alias": "$col",
       "groupBy": [],
       "measurement": "fp-cg-nat-stats",
       "orderByTime": "ASC",
@@ -110,60 +154,9 @@
       ]
     }
   ],
-  "thresholds": [],
-  "timeRegions": [],
   "title": "Hairpinning stats",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
-  },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
-    },
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
-    }
-  ],
-  "yaxis": {
-    "align": false,
-    "alignLevel": null
-  },
-  "fieldConfig": {
-    "defaults": {
-      "links": []
-    },
-    "overrides": []
-  },
-  "pluginVersion": "9.5.3",
-  "bars": false,
-  "dashes": false,
+  "type": "timeseries",
   "description": "",
-  "fillGradient": 0,
-  "hiddenSeries": false,
-  "percentage": false,
-  "points": false,
-  "stack": false,
-  "steppedLine": false,
   "timeFrom": null,
   "timeShift": null
 }

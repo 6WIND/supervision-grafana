@@ -2,38 +2,32 @@
   "datasource": {
     "type": "influxdb"
   },
-  "aliasColors": {},
-  "dashLength": 10,
-  "fill": 1,
-  "id": 17,
-  "legend": {
-    "avg": false,
-    "current": false,
-    "max": false,
-    "min": false,
-    "show": true,
-    "total": false,
-    "values": false
+  "gridPos": {
+    "x": 8,
+    "y": 110,
+    "w": 8,
+    "h": 7
   },
-  "lines": true,
-  "linewidth": 1,
   "links": [],
-  "nullPointMode": "null",
-  "pointradius": 5,
-  "renderer": "flot",
-  "seriesOverrides": [
-    {
-      "alias": "/.*deletion.*/",
-      "transform": "negative-Y"
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none"
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
     }
-  ],
-  "spaceLength": 10,
+  },
+  "pluginVersion": "9.5.3",
   "targets": [
     {
+      "alias": "$col",
       "datasource": {
         "type": "influxdb"
       },
-      "alias": "$col",
       "dsType": "influxdb",
       "groupBy": [],
       "hide": false,
@@ -47,42 +41,42 @@
       "select": [
         [
           {
-            "type": "field",
             "params": [
               "allocations"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "conntrack-allocations"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "destructions"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "conntrack-destructions"
-            ]
+            ],
+            "type": "alias"
           }
         ]
       ],
@@ -95,10 +89,10 @@
       ]
     },
     {
+      "alias": "$col",
       "datasource": {
         "type": "influxdb"
       },
-      "alias": "$col",
       "dsType": "influxdb",
       "groupBy": [],
       "hide": false,
@@ -112,42 +106,42 @@
       "select": [
         [
           {
-            "type": "field",
             "params": [
               "nat-allocations"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "nat-allocations"
-            ]
+            ],
+            "type": "alias"
           }
         ],
         [
           {
-            "type": "field",
             "params": [
               "nat-destructions"
-            ]
+            ],
+            "type": "field"
           },
           {
-            "type": "non_negative_derivative",
             "params": [
               "1s"
-            ]
+            ],
+            "type": "non_negative_derivative"
           },
           {
-            "type": "alias",
             "params": [
               "nat-destructions"
-            ]
+            ],
+            "type": "alias"
           }
         ]
       ],
@@ -160,63 +154,75 @@
       ]
     }
   ],
-  "thresholds": [],
   "title": "Conntrack allocations/destructions per second",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
-  },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+  "type": "timeseries",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "short"
     },
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
-    }
-  ],
-  "gridPos": {
-    "x": 8,
-    "y": 63,
-    "w": 8,
-    "h": 7
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byRegexp",
+          "options": "/.*deletion.*/"
+        },
+        "properties": [
+          {
+            "id": "custom.transform",
+            "value": "negative-Y"
+          }
+        ]
+      }
+    ]
   },
-  "options": {
-    "alertThreshold": true
-  },
-  "pluginVersion": "9.5.3",
-  "yaxis": {
-    "align": false,
-    "alignLevel": null
-  },
-  "timeRegions": [],
-  "bars": false,
-  "dashes": false,
   "description": "",
-  "percentage": false,
-  "points": false,
-  "stack": false,
-  "steppedLine": false,
   "timeFrom": null,
-  "timeShift": null,
-  "fillGradient": 0,
-  "hiddenSeries": false
+  "timeShift": null
 }

@@ -1,85 +1,11 @@
 {
-  "columns": [],
-  "datasource": "influxdb",
-  "description": "If several users have been connected on the same terminal, the last one is displayed.",
-  "fontSize": "100%",
-  "id": 7,
-  "links": [],
-  "pageSize": null,
-  "scroll": true,
-  "showHeader": true,
-  "sort": {
-    "col": 0,
-    "desc": true
+  "datasource": {
+    "type": "influxdb"
   },
+  "description": "If several users have been connected on the same terminal, the last one is displayed.",
+  "id": 25,
+  "links": [],
   "span": 6,
-  "styles": [
-    {
-      "alias": "Time",
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "pattern": "Time",
-      "type": "hidden"
-    },
-    {
-      "alias": "source",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "pattern": "last_source",
-      "thresholds": [],
-      "type": "string",
-      "unit": "short"
-    },
-    {
-      "alias": "started",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "pattern": "last_started",
-      "thresholds": [],
-      "type": "date",
-      "unit": "short"
-    },
-    {
-      "alias": "user",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "dateFormat": "YYYY-MM-DD HH:mm:ss",
-      "decimals": 2,
-      "pattern": "last_user",
-      "thresholds": [],
-      "type": "string",
-      "unit": "short"
-    },
-    {
-      "alias": "",
-      "colorMode": null,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
-      "decimals": 2,
-      "pattern": "/.*/",
-      "thresholds": [],
-      "type": "number",
-      "unit": "short"
-    }
-  ],
   "targets": [
     {
       "dsType": "influxdb",
@@ -116,10 +42,168 @@
           "operator": "=~",
           "value": "/^$host$/"
         }
-      ]
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
   "title": "Logged users during time period",
-  "transform": "table",
-  "type": "table"
+  "type": "table",
+  "gridPos": {
+    "x": 12,
+    "y": 77,
+    "w": 12,
+    "h": 7
+  },
+  "options": {
+    "showHeader": true,
+    "cellHeight": "sm",
+    "footer": {
+      "show": false,
+      "reducer": [
+        "sum"
+      ],
+      "countRows": false,
+      "fields": ""
+    }
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "align": null,
+        "cellOptions": {
+          "type": "auto"
+        },
+        "inspect": false
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "unit": "short",
+      "decimals": 2,
+      "displayName": "",
+      "color": {
+        "mode": "thresholds"
+      }
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "Time"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Time"
+          },
+          {
+            "id": "custom.align",
+            "value": null
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "last_source"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "source"
+          },
+          {
+            "id": "unit",
+            "value": "short"
+          },
+          {
+            "id": "decimals",
+            "value": 2
+          },
+          {
+            "id": "custom.align",
+            "value": null
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "last_started"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "started"
+          },
+          {
+            "id": "unit",
+            "value": "short"
+          },
+          {
+            "id": "decimals",
+            "value": 2
+          },
+          {
+            "id": "unit",
+            "value": "time: YYYY-MM-DD HH:mm:ss"
+          },
+          {
+            "id": "custom.align",
+            "value": null
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "Time"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "user"
+          },
+          {
+            "id": "unit",
+            "value": "short"
+          },
+          {
+            "id": "decimals",
+            "value": 2
+          },
+          {
+            "id": "custom.align",
+            "value": null
+          },
+          {
+            "id": "custom.hidden",
+            "value": true
+          }
+        ]
+      }
+    ]
+  },
+  "transformations": [
+    {
+      "id": "merge",
+      "options": {
+        "reducers": []
+      }
+    }
+  ],
+  "pluginVersion": "9.5.3"
 }

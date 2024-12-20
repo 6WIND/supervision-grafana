@@ -1,50 +1,37 @@
 {
-  "datasource": "influxdb",
-  "aliasColors": {},
-  "bars": false,
-  "dashLength": 10,
-  "dashes": false,
-  "fill": 1,
-  "fillGradient": 0,
+  "datasource": {
+    "type": "influxdb"
+  },
   "gridPos": {
+    "h": 7,
+    "w": 8,
     "x": 0,
-    "y": 4,
-    "w": 6,
-    "h": 7
+    "y": 38
   },
-  "hiddenSeries": false,
-  "id": 13,
-  "legend": {
-    "alignAsTable": true,
-    "avg": false,
-    "current": true,
-    "max": true,
-    "min": true,
-    "rightSide": false,
-    "show": true,
-    "total": false,
-    "values": true
-  },
-  "lines": true,
-  "linewidth": 1,
-  "maxPerRow": null,
-  "nullPointMode": "connected",
   "options": {
-    "dataLinks": []
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none"
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "table",
+      "placement": "bottom",
+      "calcs": [
+        "lastNotNull",
+        "max",
+        "min"
+      ]
+    }
   },
-  "percentage": false,
-  "pointradius": 2,
-  "points": false,
-  "renderer": "flot",
   "repeat": "twamp_sessions",
   "repeatDirection": "h",
-  "seriesOverrides": [],
-  "spaceLength": 10,
-  "stack": false,
-  "steppedLine": false,
   "targets": [
     {
       "alias": "send-delay-min",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -88,6 +75,9 @@
     },
     {
       "alias": "send-delay-average",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -131,6 +121,9 @@
     },
     {
       "alias": "send-delay-median",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -174,6 +167,9 @@
     },
     {
       "alias": "send-delay-maximum",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -217,6 +213,9 @@
     },
     {
       "alias": "reflect-delay-minimum",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -260,6 +259,9 @@
     },
     {
       "alias": "reflect-delay-average",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -303,6 +305,9 @@
     },
     {
       "alias": "reflect-delay-median",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -346,6 +351,9 @@
     },
     {
       "alias": "reflect-delay-maximum",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -391,6 +399,9 @@
     },
     {
       "alias": "round-trip-delay-minimum",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -436,6 +447,9 @@
     },
     {
       "alias": "round-trip-delay-average",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -481,6 +495,9 @@
     },
     {
       "alias": "round-trip-delay-median",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -526,6 +543,9 @@
     },
     {
       "alias": "round-trip-delay-maximum",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -571,6 +591,9 @@
     },
     {
       "alias": "send-jitter-average",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -616,6 +639,9 @@
     },
     {
       "alias": "send-jitter-median",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -661,6 +687,9 @@
     },
     {
       "alias": "reflect-jitter-average",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -706,6 +735,9 @@
     },
     {
       "alias": "reflect-jitter-median",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -751,6 +783,9 @@
     },
     {
       "alias": "round-trip-jitter-average",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -796,6 +831,9 @@
     },
     {
       "alias": "round-trip-jitter-median",
+      "datasource": {
+        "type": "influxdb"
+      },
       "groupBy": [
         {
           "params": [
@@ -840,51 +878,64 @@
       ]
     }
   ],
-  "thresholds": [],
-  "timeFrom": null,
-  "timeRegions": [],
-  "timeShift": null,
   "title": "TWAMP: $twamp_sessions",
-  "tooltip": {
-    "shared": true,
-    "sort": 0,
-    "value_type": "individual"
-  },
-  "type": "graph",
-  "xaxis": {
-    "buckets": null,
-    "mode": "time",
-    "name": null,
-    "show": true,
-    "values": []
-  },
-  "yaxes": [
-    {
-      "format": "ms",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
+  "type": "timeseries",
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": true,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "value": null,
+            "color": "green"
+          },
+          {
+            "value": 80,
+            "color": "red"
+          }
+        ]
+      },
+      "links": [],
+      "unit": "ms"
     },
-    {
-      "format": "short",
-      "label": null,
-      "logBase": 1,
-      "max": null,
-      "min": null,
-      "show": true
-    }
-  ],
-  "yaxis": {
-    "align": false,
-    "alignLevel": null
+    "overrides": []
   },
-  "scopedVars": {
-    "twamp_sessions": {
-      "text": "foo-main",
-      "value": "foo-main",
-      "selected": false
-    }
-  }
+  "pluginVersion": "9.5.3",
+  "description": "",
+  "timeFrom": null,
+  "timeShift": null
 }
