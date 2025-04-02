@@ -82,8 +82,6 @@ dashboards:
         panels:
           - debug-fp-bridge:
               span: 4
-          - debug-fp-ebtables:
-              span: 4
           - debug-fp-vlan:
               span: 4
       - title: FP L3 stack
