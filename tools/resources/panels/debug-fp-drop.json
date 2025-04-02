@@ -46,6 +46,48 @@
       "datasource": {
         "type": "influxdb"
       }
+    },
+    {
+      "alias": "$col",
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-global-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT difference(/.*fast-path-dropped*/) AS \"_\" FROM \"fp-global-stats\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": true,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "*"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "difference"
+          },
+          {
+            "params": [
+              "_"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ],
+      "datasource": {
+        "type": "influxdb"
+      }
     }
   ],
   "title": "FP drop stats",
