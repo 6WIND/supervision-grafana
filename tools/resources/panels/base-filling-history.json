@@ -3,7 +3,7 @@
     "type": "influxdb"
   },
   "links": [],
-  "span": 10,
+  "span": 5,
   "targets": [
     {
       "alias": "$col",

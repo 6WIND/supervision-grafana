@@ -1,0 +1,119 @@
+{
+  "datasource": {
+    "type": "influxdb"
+  },
+  "type": "timeseries",
+  "span": 5,
+  "title": "Rate",
+  "gridPos": {
+    "x": 14,
+    "y": 71,
+    "h": 7,
+    "w": 10
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "barWidthFactor": 0.6,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "insertNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "unit": "short"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.6.1",
+  "targets": [
+    {
+      "alias": "$col",
+      "datasource": {
+        "uid": "aekg2cevaemm8c",
+        "type": "influxdb"
+      },
+      "dsType": "influxdb",
+      "groupBy": [],
+      "measurement": "fp-filling",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT  derivative(\"$filling-current\", 1s) as \"$filling-current\" FROM \"fp-filling\" WHERE (\"host\" =~ /^$host$/) AND $timeFilter",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "/^$filling$/"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "none",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

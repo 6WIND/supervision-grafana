@@ -199,6 +199,7 @@ dashboards:
         panels:
           - base-filling-pie
           - base-filling-history
+          - base-filling-rate
         repeat: filling
 
   router:
@@ -226,6 +227,7 @@ dashboards:
         panels:
           - base-filling-pie
           - base-filling-history
+          - base-filling-rate
         repeat: filling
 
 datasources:
