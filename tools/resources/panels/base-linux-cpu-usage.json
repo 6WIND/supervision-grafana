@@ -1,17 +1,83 @@
 {
-  "datasource": {
-    "type": "influxdb"
+  "type": "timeseries",
+  "title": "Linux CPUs",
+  "gridPos": {
+    "x": 12,
+    "y": 1,
+    "h": 7,
+    "w": 6
   },
-  "links": [],
   "span": 3,
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "barWidthFactor": 0.6,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "insertNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "max": 100,
+      "min": 0,
+      "unit": "percent"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "12.1.0",
   "targets": [
     {
       "alias": "$tag_cpu",
+      "datasource": {
+        "type": "influxdb"
+      },
       "dsType": "influxdb",
       "groupBy": [
         {
           "params": [
-            "cpu"
+            "cpu::tag"
           ],
           "type": "tag"
         }
@@ -33,23 +99,25 @@
       ],
       "tags": [
         {
-          "key": "host",
+          "key": "host::tag",
           "operator": "=~",
           "value": "/^$host$/"
         },
         {
           "condition": "AND",
-          "key": "cpu",
+          "key": "cpu::tag",
           "operator": "!~",
           "value": "/^$fpcpu$/"
         }
       ],
-      "datasource": {
-        "type": "influxdb"
-      }
+      "query": "SELECT \"busy\" FROM \"system-cpu-usage\" WHERE (\"host\"::tag =~ /^$host$/ AND \"cpu\"::tag !~ /^$fpcpu$/) AND $timeFilter GROUP BY \"cpu\"::tag",
+      "rawQuery": true
     },
     {
       "alias": "mean (1min)",
+      "datasource": {
+        "type": "influxdb"
+      },
       "dsType": "influxdb",
       "groupBy": [
         {
@@ -80,34 +148,27 @@
       ],
       "tags": [
         {
-          "key": "host",
+          "key": "host::tag",
           "operator": "=~",
           "value": "/^$host$/"
         },
         {
           "condition": "AND",
-          "key": "cpu",
+          "key": "cpu::tag",
           "operator": "!~",
           "value": "/^$fpcpu$/"
         }
-      ],
-      "datasource": {
-        "type": "influxdb"
-      }
+      ]
     }
   ],
-  "title": "Linux CPUs",
-  "type": "timeseries",
-  "gridPos": {
-    "x": 12,
-    "y": 1,
-    "w": 6,
-    "h": 7
+  "datasource": {
+    "type": "influxdb"
   },
   "options": {
     "tooltip": {
       "mode": "multi",
-      "sort": "none"
+      "sort": "none",
+      "hideZeros": false
     },
     "legend": {
       "showLegend": true,
@@ -115,63 +176,5 @@
       "placement": "bottom",
       "calcs": []
     }
-  },
-  "fieldConfig": {
-    "defaults": {
-      "custom": {
-        "drawStyle": "line",
-        "lineInterpolation": "linear",
-        "barAlignment": 0,
-        "lineWidth": 1,
-        "fillOpacity": 10,
-        "gradientMode": "none",
-        "spanNulls": false,
-        "showPoints": "never",
-        "pointSize": 5,
-        "stacking": {
-          "mode": "none",
-          "group": "A"
-        },
-        "axisPlacement": "auto",
-        "axisLabel": "",
-        "axisColorMode": "text",
-        "scaleDistribution": {
-          "type": "linear"
-        },
-        "axisCenteredZero": false,
-        "hideFrom": {
-          "tooltip": false,
-          "viz": false,
-          "legend": false
-        },
-        "thresholdsStyle": {
-          "mode": "off"
-        }
-      },
-      "color": {
-        "mode": "palette-classic"
-      },
-      "mappings": [],
-      "thresholds": {
-        "mode": "absolute",
-        "steps": [
-          {
-            "value": null,
-            "color": "green"
-          },
-          {
-            "value": 80,
-            "color": "red"
-          }
-        ]
-      },
-      "unit": "percent",
-      "min": 0,
-      "max": 100
-    },
-    "overrides": []
-  },
-  "pluginVersion": "9.5.3",
-  "timeFrom": null,
-  "timeShift": null
+  }
 }
