@@ -1,0 +1,247 @@
+dashboards:
+  base:
+    enabled: no
+    title: base
+    rows:
+      - title: System
+        panels:
+          - base-uptime
+          - base-fp-status
+          - base-alarm-raised
+          - base-ram-usage
+          - base-linux-cpu-usage
+          - base-fp-cpu-usage
+      - title: License
+        panels:
+          - overview-license
+          - base-license-time-left
+          - base-license-throughput
+          - base-license-cgnat
+          - base-license-ipsec
+          - base-license-bng
+      - title: Network
+        panels:
+          - base-network-nic-info
+          - base-network-traffic
+          - base-network-twamp-stats
+      - title: Power
+        panels:
+          - base-cpu-power
+          - base-cpu-frequency
+      - title: DDoS protection statistics
+        panels:
+          - ddos-error-stats:
+              span: 6
+          - ddos-global-stats:
+              span: 6
+          - ddos-source-stats:
+              span: 6
+          - ddos-dest-stats:
+              span: 6
+        collapse: yes
+    templating:
+      - file: host
+      - file: fpcpus
+      - file: interfaces
+      - file: twamp-sessions
+
+  overview:
+    enabled: yes
+    title: overview
+    rows:
+      - title: $host
+        panels:
+          - base-uptime
+          - base-fp-status
+          - overview-version
+          - overview-license
+          - base-license-time-left:
+              span: 1
+          - base-ram-usage:
+              span: 2
+          - base-linux-cpu-usage:
+              span: 2
+          - base-fp-cpu-usage:
+              span: 2
+        repeat: host
+    templating:
+      - file: hosts
+      - file: fpcpus
+
+  debug:
+    enabled: yes
+    title: debug
+    rows:
+      - title: FP statistics
+        panels:
+          - debug-fp-drop:
+              span: 6
+          - debug-fp-module-exception:
+              span: 6
+      - title: FP L2 stack
+        panels:
+          - debug-fp-bridge:
+              span: 4
+          - debug-fp-vlan:
+              span: 4
+      - title: FP L3 stack
+        panels:
+          - debug-fp-ip
+          - debug-fp-ip6
+      - title: FP tunnels
+        panels:
+          - debug-fp-gre
+          - debug-fp-vxlan
+      - title: FP to Linux
+        panels:
+          - debug-fp-exceptions
+      - title: FP isolation
+        panels:
+          - debug-fp-context-switch
+          - debug-numa-stats
+          - debug-fp-soft-interrupts
+      - title: Linux statistics
+        panels:
+          - debug-linux-hw-stats:
+              span: 6
+          - debug-linux-file-descriptors:
+              span: 6
+          - debug-linux-cpu-times:
+              span: 12
+      - title: FP ports statistics
+        panels:
+          - debug-fp-port-queue-stats
+          - debug-fp-port-bulk-stats
+          - debug-fp-port-stats
+      - title: FP CP protection
+        panels:
+          - debug-fp-cp-protection
+        collapse: yes
+      - title: FP GRO
+        panels:
+          - debug-fp-gro
+        collapse: yes
+    templating:
+      - file: host
+      - file: fpcpus
+
+  cgnat+firewall:
+    inherits: base
+    enabled: yes
+    title: cg-nat+firewall
+    templating:
+      - file: filling
+        values:
+          - fp-conntracks
+          - cgnat-nats
+          - cgnat-users
+          - cgnat-blocks
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: Fp Filling
+        panels:
+          - base-filling-pie-repeat
+      - title: Blocks and Users
+        panels:
+          - cgnat-blocks-and-users
+          - cgnat-blocks-and-users-rate
+          - cgnat-block-and-user-allocation-failures
+      - title: Firewall
+        panels:
+        - firewall-actions
+        - firewall-accepted-packets-rate
+        - firewall-dropped-packets-rate
+      - title: Nat
+        panels:
+          - cgnat-nat-allocation-and-port-overloading:
+              span: 6
+          - cgnat-hairpinning-stats:
+              span: 6
+          - cgnat-packet-race-cases:
+              span: 6
+      - title: Conntracks
+        panels:
+          - cgnat-conntracks
+          - cgnat-conntracks-rate
+          - cgnat-conntrack-allocation-failures
+      - title: Conntracks Failures
+        panels:
+          - cgnat-invalid-packets:
+              span: 6
+          - cgnat-port-allocation-failures:
+              span: 6
+
+  bng:
+    inherits: base
+    enabled: yes
+    title: bng
+    templating:
+      - file: filling
+        values:
+          - ipoe-sessions
+          - pppoe-sessions
+          - interfaces
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: FP table $filling
+        panels:
+          - base-filling-pie
+          - base-filling-history
+          - base-filling-rate
+        repeat: filling
+
+  router:
+    inherits: base
+    enabled: yes
+    title: router
+    templating:
+      - file: filling
+        values:
+          - neighbors-ipv4
+          - routes-ipv4
+    rows:
+      - title: Processes
+        panels:
+          - base-process-usage
+          - base-process-memory-usage
+      - title: Users
+        panels:
+          - base-user-count
+          - base-logged-users
+      - title: Disks
+        panels:
+          - base-disk-usage
+      - title: FP table $filling
+        panels:
+          - base-filling-pie
+          - base-filling-history
+          - base-filling-rate
+        repeat: filling
+
+datasources:
+   influxdb:
+     enabled: yes
+     access: proxy
+     database: telegraf
+     name: influxdb
+     type: influxdb
+     url: http://influxdb:8086
+     isDefault: yes
+
+grafana:
+  host: localhost
+  port: 3000
+  user: admin
+  password: admin
