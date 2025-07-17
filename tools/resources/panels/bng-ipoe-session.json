@@ -1,0 +1,127 @@
+{
+  "type": "timeseries",
+  "title": "IPoE Sessions",
+  "gridPos": {
+    "x": 0,
+    "y": 8,
+    "h": 8,
+    "w": 12
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "smooth",
+        "barAlignment": 0,
+        "barWidthFactor": 0.6,
+        "lineWidth": 1,
+        "fillOpacity": 11,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "insertNulls": false,
+        "showPoints": "auto",
+        "pointSize": 1,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      }
+    },
+    "overrides": []
+  },
+  "pluginVersion": "11.6.1",
+  "targets": [
+    {
+      "alias": "$col",
+      "groupBy": [
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "bng-ipoe-server-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT \"sessions\", \"subscribers\" FROM \"bng-ipoe-server-stats\" WHERE (\"host\"::tag =~ /^$host$/) AND $timeFilter GROUP BY \"host\"::tag",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "sessions"
+            ],
+            "type": "field"
+          }
+        ],
+        [
+          {
+            "params": [
+              "subscribers"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "tooltip": {
+      "mode": "single",
+      "sort": "none",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

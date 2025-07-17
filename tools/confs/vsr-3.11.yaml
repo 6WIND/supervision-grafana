@@ -188,6 +188,15 @@ dashboards:
           - pppoe-sessions
           - interfaces
     rows:
+      - title: Bng PPPoE
+        panels:
+        - bng-pppoe-session
+        - bng-pppoe-session-rate
+        - bng-pppoe-stats
+      - title: Bng IPoE
+        panels:
+        - bng-ipoe-session
+        - bng-ipoe-session-rate
       - title: Processes
         panels:
           - base-process-usage
