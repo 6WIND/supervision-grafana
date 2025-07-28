@@ -51,17 +51,17 @@ dashboards:
     rows:
       - title: $host
         panels:
-          - base-uptime
-          - base-fp-status
-          - overview-version
-          - overview-license
-          - base-license-time-left:
-              span: 1
+          - overview-summary:
+              span: 2
+          - base-alarm-raised:
+              span: 2
           - base-ram-usage:
               span: 2
           - base-linux-cpu-usage:
               span: 2
           - base-fp-cpu-usage:
+              span: 2
+          - overview-rx-tx:
               span: 2
         repeat: host
     templating:

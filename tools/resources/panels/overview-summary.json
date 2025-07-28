@@ -1,0 +1,402 @@
+{
+  "id": 10,
+  "type": "stat",
+  "title": "Summary",
+  "gridPos": {
+    "x": 0,
+    "y": 1,
+    "h": 7,
+    "w": 3
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "text",
+            "value": null
+          },
+          {
+            "color": "red",
+            "value": 80
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      },
+      "unit": "none"
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "remaining-days"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Support / time left"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "valid"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "License"
+          },
+          {
+            "id": "mappings",
+            "value": [
+              {
+                "options": {
+                  "0": {
+                    "color": "red",
+                    "index": 0,
+                    "text": "invalid"
+                  },
+                  "1": {
+                    "color": "green",
+                    "index": 1,
+                    "text": "ok"
+                  }
+                },
+                "type": "value"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "system:uptime"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Uptime"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "value"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Fast path status"
+          },
+          {
+            "id": "mappings",
+            "value": [
+              {
+                "options": {
+                  "0": {
+                    "color": "green",
+                    "index": 0,
+                    "text": "ok"
+                  },
+                  "1": {
+                    "color": "orange",
+                    "index": 1,
+                    "text": "loaded"
+                  },
+                  "2": {
+                    "color": "red",
+                    "index": 2,
+                    "text": "stopped"
+                  },
+                  "3": {
+                    "color": "red",
+                    "index": 3,
+                    "text": "bad"
+                  },
+                  "null": {
+                    "color": "green",
+                    "index": 4,
+                    "text": "N/A"
+                  }
+                },
+                "type": "value"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "not-cleared"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Raised alarms"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "product:version"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Version"
+          }
+        ]
+      }
+    ]
+  },
+  "transformations": [
+    {
+      "id": "filterFieldsByName",
+      "options": {
+        "byVariable": false,
+        "include": {
+          "names": [
+            "system:uptime",
+            "value",
+            "product:version",
+            "valid",
+            "remaining-days",
+            "not-cleared"
+          ]
+        }
+      }
+    }
+  ],
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "system-uptime",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "A",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "system:uptime"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "system:uptime"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-status",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "D",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "value"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "product-version",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "E",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "product:version"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "product:version"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "B",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "valid"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "valid"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "refId": "C",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "remaining-days"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "remaining-days"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "maxDataPoints": 100,
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": "/.*/",
+      "limit": 4
+    },
+    "orientation": "horizontal",
+    "textMode": "auto",
+    "wideLayout": true,
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "showPercentChange": false,
+    "percentChangeColorMode": "standard",
+    "text": {
+      "valueSize": 20
+    }
+  }
+}
