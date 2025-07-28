@@ -1,0 +1,259 @@
+{
+  "type": "timeseries",
+  "title": "Traffic received and sent",
+  "description": "The sum of the traffic received and sent on the monitored interfaces.",
+  "gridPos": {
+    "x": 17,
+    "y": 0,
+    "h": 8,
+    "w": 7
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "barWidthFactor": 0.6,
+        "lineWidth": 1,
+        "fillOpacity": 10,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "insertNulls": false,
+        "showPoints": "never",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          }
+        ]
+      },
+      "unit": "bps"
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byRegexp",
+          "options": "/sent.*/"
+        },
+        "properties": [
+          {
+            "id": "custom.transform",
+            "value": "negative-Y"
+          }
+        ]
+      }
+    ]
+  },
+  "transformations": [
+    {
+      "filter": {
+        "id": "byRefId",
+        "options": "/^(?:A)$/"
+      },
+      "id": "calculateField",
+      "options": {
+        "alias": "total recv",
+        "mode": "reduceRow",
+        "reduce": {
+          "include": [],
+          "reducer": "sum"
+        }
+      }
+    },
+    {
+      "filter": {
+        "id": "byRefId",
+        "options": "/^(?:B)$/"
+      },
+      "id": "calculateField",
+      "options": {
+        "alias": "total sent",
+        "mode": "reduceRow",
+        "reduce": {
+          "reducer": "sum"
+        }
+      }
+    }
+  ],
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "alias": "recv [$tag_host]",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "10s"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        },
+        {
+          "params": [
+            "linear"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-nic-traffic-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "bytes-recv"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "sum"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "non_negative_derivative"
+          },
+          {
+            "params": [
+              "* 8"
+            ],
+            "type": "math"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "condition": "AND",
+          "key": "cluster::tag",
+          "operator": "=~",
+          "value": "/^$cluster$/"
+        }
+      ]
+    },
+    {
+      "alias": "sent [$tag_host]",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "dsType": "influxdb",
+      "groupBy": [
+        {
+          "params": [
+            "10s"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        },
+        {
+          "params": [
+            "linear"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "network-nic-traffic-stats",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "rawQuery": false,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "bytes-sent"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "sum"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "non_negative_derivative"
+          },
+          {
+            "params": [
+              "* 8"
+            ],
+            "type": "math"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "cluster::tag",
+          "operator": "=~",
+          "value": "/^$cluster$/"
+        }
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "asc",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

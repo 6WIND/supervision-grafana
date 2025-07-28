@@ -1,0 +1,324 @@
+{
+  "type": "stat",
+  "title": "Summary",
+  "description": "",
+  "gridPos": {
+    "x": 0,
+    "y": 0,
+    "h": 8,
+    "w": 3
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "text",
+            "value": null
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      },
+      "unit": "none"
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "instances"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Total instances"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "bng-sessions"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "BNG sessions"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "cgnat-sessions"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "CGNAT / FP-FW Conntracks"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "ipsec-sessions"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "IPSec tunnels"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "throughput"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Throughput"
+          },
+          {
+            "id": "unit",
+            "value": "Gbits"
+          }
+        ]
+      },
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "alarms"
+        },
+        "properties": [
+          {
+            "id": "displayName",
+            "value": "Not cleared alarms"
+          }
+        ]
+      }
+    ]
+  },
+  "transformations": [
+    {
+      "id": "filterFieldsByName",
+      "options": {
+        "byVariable": false,
+        "include": {
+          "names": [
+            "instances",
+            "throughput",
+            "ipsec-sessions",
+            "cgnat-sessions",
+            "bng-sessions",
+            "alarms"
+          ]
+        }
+      }
+    }
+  ],
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "system-uptime",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT count(distinct host) as instances FROM (SELECT * FROM \"product-license\" WHERE (\"licensed-feature\"::tag = 'product') AND \"cluster\"::tag =~ /^$cluster$/ AND $timeFilter)",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "system:uptime"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-status",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT SUM(last) as \"throughput\" FROM (SELECT LAST(\"licensed-feature-counter-used\") FROM \"autogen\".\"product-license\" WHERE (\"licensed-feature\"::tag = 'product') AND \"cluster\"::tag =~ /^$cluster$/ AND $timeFilter GROUP BY \"host\"::tag fill(linear))",
+      "rawQuery": true,
+      "refId": "E",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "count"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-status",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT SUM(last) as \"ipsec-sessions\" FROM (SELECT LAST(\"licensed-feature-counter-used\") FROM \"autogen\".\"product-license\" WHERE (\"licensed-feature\"::tag = 'ipsec') AND \"cluster\"::tag =~ /^$cluster$/ AND $timeFilter GROUP BY \"host\"::tag fill(linear))",
+      "rawQuery": true,
+      "refId": "B",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "count"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-status",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT SUM(last) as \"cgnat-sessions\" FROM (SELECT LAST(\"licensed-feature-counter-used\") FROM \"autogen\".\"product-license\" WHERE (\"licensed-feature\"::tag = 'cgnat') AND \"cluster\"::tag =~ /^$cluster$/ AND $timeFilter GROUP BY \"host\"::tag fill(linear))",
+      "rawQuery": true,
+      "refId": "D",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "count"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    },
+    {
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [],
+      "hide": false,
+      "measurement": "fp-status",
+      "orderByTime": "ASC",
+      "policy": "default",
+      "query": "SELECT SUM(last) as \"bng-sessions\" FROM (SELECT LAST(\"licensed-feature-counter-used\") FROM \"autogen\".\"product-license\" WHERE (\"licensed-feature\"::tag = 'bng-pppoe') AND \"cluster\"::tag =~ /^$cluster$/ AND $timeFilter GROUP BY \"host\"::tag fill(linear))",
+      "rawQuery": true,
+      "refId": "C",
+      "resultFormat": "table",
+      "select": [
+        [
+          {
+            "params": [
+              "value"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "count"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "host::tag",
+          "operator": "=~",
+          "value": "/^$host$/"
+        }
+      ]
+    }
+  ],
+  "maxDataPoints": 100,
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": "/.*/",
+      "limit": 4
+    },
+    "orientation": "horizontal",
+    "textMode": "auto",
+    "wideLayout": true,
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto",
+    "showPercentChange": false,
+    "percentChangeColorMode": "standard",
+    "text": {
+      "valueSize": 20
+    }
+  }
+}

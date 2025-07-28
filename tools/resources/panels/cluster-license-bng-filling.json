@@ -1,0 +1,104 @@
+{
+  "type": "bargauge",
+  "title": "BNG Sessions filling per instance",
+  "gridPos": {
+    "x": 6,
+    "y": 17,
+    "h": 8,
+    "w": 6
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "percentage",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          }
+        ]
+      },
+      "color": {
+        "mode": "continuous-GrYlRd"
+      },
+      "decimals": 0,
+      "max": 1,
+      "min": 0,
+      "noValue": "-",
+      "unit": "percentunit"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "alias": "$tag_host",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "autogen",
+      "query": "SELECT (\"licensed-feature-counter-used\") / \"licensed-feature-counter-allowed\"  FROM \"autogen\".\"product-license\" WHERE (\"licensed-feature\"::tag = 'bng-pppoe') AND $timeFilter GROUP BY \"host\"::tag",
+      "rawQuery": true,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-used"
+            ],
+            "type": "field"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "bng-pppoe"
+        }
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "last"
+      ],
+      "fields": ""
+    },
+    "orientation": "horizontal",
+    "legend": {
+      "showLegend": false,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    },
+    "displayMode": "gradient",
+    "valueMode": "color",
+    "namePlacement": "auto",
+    "showUnfilled": true,
+    "sizing": "auto",
+    "minVizWidth": 0,
+    "minVizHeight": 10,
+    "maxVizHeight": 300,
+    "text": {
+      "titleSize": 18
+    }
+  }
+}

@@ -45,6 +45,50 @@ dashboards:
       - file: interfaces
       - file: twamp-sessions
 
+  cluster:
+    enabled: yes
+    title: cluster
+    rows:
+     - title: summary
+       panels:
+         - cluster-summary:
+             span: 2
+         - cluster-alarms:
+             span: 2
+         - cluster-memory:
+             span: 2
+         - cluster-cpu:
+             span: 2
+         - cluster-rx-tx:
+             span: 2
+     - title: license
+       panels:
+         - cluster-license-cgnat-fw:
+             span: 6
+         - cluster-license-cgnat-fw-rate:
+             span: 6
+         - cluster-license-ipsec:
+             span: 6
+         - cluster-license-ipsec-rate:
+             span: 6
+         - cluster-license-bng:
+             span: 6
+         - cluster-license-bng-rate:
+             span: 6
+         - cluster-license-throughput:
+             span: 6
+     - title: license-filling
+       panels:
+         - cluster-license-cgnat-fw-filling:
+             span: 2
+         - cluster-license-ipsec-filling:
+             span: 2
+         - cluster-license-bng-filling:
+             span: 2
+
+    templating:
+      - file: cluster
+
   overview:
     enabled: yes
     title: overview

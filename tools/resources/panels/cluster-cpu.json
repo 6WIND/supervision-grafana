@@ -1,0 +1,121 @@
+{
+  "type": "bargauge",
+  "title": "Current linux and fp cpu busy / host (mean)",
+  "gridPos": {
+    "x": 7,
+    "y": 0,
+    "h": 8,
+    "w": 5
+  },
+  "fieldConfig": {
+    "defaults": {
+      "mappings": [],
+      "thresholds": {
+        "mode": "percentage",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          },
+          {
+            "color": "orange",
+            "value": 80
+          },
+          {
+            "color": "red",
+            "value": 100
+          }
+        ]
+      },
+      "color": {
+        "mode": "thresholds"
+      },
+      "max": 100,
+      "min": 0,
+      "noValue": "-",
+      "unit": "percent"
+    },
+    "overrides": []
+  },
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "alias": "$tag_host",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [
+        {
+          "params": [
+            "10s"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        }
+      ],
+      "measurement": "system-cpu-usage",
+      "orderByTime": "ASC",
+      "policy": "autogen",
+      "query": "SELECT mean(\"busy\") FROM \"autogen\".\"system-cpu-usage\" WHERE (\"cluster\"::tag =~ /^$cluster$/ AND \"cpu\"::tag != '$fpcpu') AND $timeFilter GROUP BY \"host\"::tag",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "busy"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "mean"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "cluster::tag",
+          "operator": "=~",
+          "value": "/^$cluster$/"
+        }
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "reduceOptions": {
+      "values": false,
+      "calcs": [
+        "lastNotNull"
+      ],
+      "fields": ""
+    },
+    "orientation": "horizontal",
+    "legend": {
+      "showLegend": false,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    },
+    "displayMode": "gradient",
+    "valueMode": "color",
+    "namePlacement": "auto",
+    "showUnfilled": true,
+    "sizing": "auto",
+    "minVizWidth": 8,
+    "minVizHeight": 16,
+    "maxVizHeight": 300,
+    "text": {
+      "titleSize": 18
+    }
+  }
+}

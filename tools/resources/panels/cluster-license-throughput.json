@@ -1,0 +1,273 @@
+{
+  "type": "timeseries",
+  "title": "Throughput",
+  "gridPos": {
+    "x": 0,
+    "y": 30,
+    "h": 7,
+    "w": 12
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "barWidthFactor": 0.6,
+        "lineWidth": 1,
+        "fillOpacity": 11,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "insertNulls": false,
+        "showPoints": "auto",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        },
+        "lineStyle": {
+          "fill": "solid"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          }
+        ]
+      },
+      "unit": "Gbits"
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "allowed"
+        },
+        "properties": [
+          {
+            "id": "custom.lineStyle",
+            "value": {
+              "dash": [
+                10,
+                10
+              ],
+              "fill": "dash"
+            }
+          },
+          {
+            "id": "custom.fillOpacity",
+            "value": 0
+          }
+        ]
+      }
+    ]
+  },
+  "transformations": [
+    {
+      "filter": {
+        "id": "byRefId",
+        "options": "/^(?:A)$/"
+      },
+      "id": "calculateField",
+      "options": {
+        "alias": "total",
+        "mode": "reduceRow",
+        "reduce": {
+          "include": [],
+          "reducer": "sum"
+        },
+        "replaceFields": false
+      }
+    },
+    {
+      "id": "calculateField",
+      "options": {
+        "mode": "reduceRow",
+        "reduce": {
+          "reducer": "sum"
+        },
+        "alias": "allowed",
+        "replaceFields": true
+      },
+      "filter": {
+        "id": "byRefId",
+        "options": "/^(?:B)$/"
+      }
+    }
+  ],
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "alias": "$col $tag_host",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [
+        {
+          "params": [
+            "10s"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        },
+        {
+          "params": [
+            "linear"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "autogen",
+      "query": "SELECT (last(\"pppoe-sessions-current\") + last(\"ipoe-sessions-current\"))  AS \"used\" FROM \"autogen\".\"fp-filling\" WHERE \"cluster-id\"::tag =~ /^$cluster$/ AND $timeFilter GROUP BY time(10s), \"host\"::tag fill(linear)",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-used"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "used"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "product"
+        },
+        {
+          "condition": "AND",
+          "key": "cluster::tag",
+          "operator": "=~",
+          "value": "/^$cluster$/"
+        }
+      ]
+    },
+    {
+      "alias": "allowed",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [
+        {
+          "params": [
+            "10s"
+          ],
+          "type": "time"
+        },
+        {
+          "type": "tag",
+          "params": [
+            "host::tag"
+          ]
+        },
+        {
+          "params": [
+            "linear"
+          ],
+          "type": "fill"
+        }
+      ],
+      "hide": false,
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "autogen",
+      "query": "SELECT last(\"licensed-feature-counter-allowed\") AS \"allowed\" FROM \"autogen\".\"product-license\" WHERE (\"licensed-feature\"::tag = 'throughput' AND \"cluster\"::tag =~ /^$cluster$/) AND $timeFilter GROUP BY time(10s) fill(previous)",
+      "rawQuery": false,
+      "refId": "B",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-allowed"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "allowed"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "product"
+        },
+        {
+          "condition": "AND",
+          "key": "cluster::tag",
+          "operator": "=~",
+          "value": "/^$cluster$/"
+        }
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "desc",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}

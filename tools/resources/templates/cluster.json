@@ -1,0 +1,20 @@
+{
+  "allValue": null,
+  "current": {},
+  "datasource": "${DS_INFLUXDB}",
+  "hide": 0,
+  "includeAll": false,
+  "label": null,
+  "multi": false,
+  "name": "cluster",
+  "options": [],
+  "query": "SHOW TAG VALUES WITH KEY = \"cluster\"",
+  "refresh": 1,
+  "regex": "",
+  "sort": 0,
+  "tagValuesQuery": "",
+  "tags": [],
+  "tagsQuery": "",
+  "type": "query",
+  "useTags": false
+}

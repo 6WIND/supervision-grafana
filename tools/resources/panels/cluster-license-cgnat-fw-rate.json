@@ -1,0 +1,186 @@
+{
+  "type": "timeseries",
+  "title": "CGNAT / FP-FW conntracks rate",
+  "gridPos": {
+    "x": 6,
+    "y": 25,
+    "h": 8,
+    "w": 6
+  },
+  "fieldConfig": {
+    "defaults": {
+      "custom": {
+        "drawStyle": "line",
+        "lineInterpolation": "linear",
+        "barAlignment": 0,
+        "barWidthFactor": 0.6,
+        "lineWidth": 1,
+        "fillOpacity": 11,
+        "gradientMode": "none",
+        "spanNulls": false,
+        "insertNulls": false,
+        "showPoints": "auto",
+        "pointSize": 5,
+        "stacking": {
+          "mode": "none",
+          "group": "A"
+        },
+        "axisPlacement": "auto",
+        "axisLabel": "",
+        "axisColorMode": "text",
+        "axisBorderShow": false,
+        "scaleDistribution": {
+          "type": "linear"
+        },
+        "axisCenteredZero": false,
+        "hideFrom": {
+          "tooltip": false,
+          "viz": false,
+          "legend": false
+        },
+        "thresholdsStyle": {
+          "mode": "off"
+        },
+        "lineStyle": {
+          "fill": "solid"
+        }
+      },
+      "color": {
+        "mode": "palette-classic"
+      },
+      "mappings": [],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          {
+            "color": "green",
+            "value": null
+          }
+        ]
+      }
+    },
+    "overrides": [
+      {
+        "matcher": {
+          "id": "byName",
+          "options": "tmp"
+        },
+        "properties": [
+          {
+            "id": "custom.hideFrom",
+            "value": {
+              "legend": false,
+              "tooltip": true,
+              "viz": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "transformations": [
+    {
+      "id": "calculateField",
+      "options": {
+        "alias": "total",
+        "mode": "reduceRow",
+        "reduce": {
+          "include": [],
+          "reducer": "sum"
+        },
+        "replaceFields": false
+      }
+    }
+  ],
+  "pluginVersion": "12.0.2",
+  "targets": [
+    {
+      "alias": "used $tag_host",
+      "datasource": {
+        "type": "influxdb"
+      },
+      "groupBy": [
+        {
+          "params": [
+            "10s"
+          ],
+          "type": "time"
+        },
+        {
+          "params": [
+            "host::tag"
+          ],
+          "type": "tag"
+        },
+        {
+          "params": [
+            "linear"
+          ],
+          "type": "fill"
+        }
+      ],
+      "measurement": "product-license",
+      "orderByTime": "ASC",
+      "policy": "autogen",
+      "query": "SELECT (last(\"pppoe-sessions-current\") + last(\"ipoe-sessions-current\"))  AS \"used\" FROM \"autogen\".\"fp-filling\" WHERE \"cluster-id\"::tag =~ /^$cluster$/ AND $timeFilter GROUP BY time(10s), \"host\"::tag fill(linear)",
+      "rawQuery": false,
+      "refId": "A",
+      "resultFormat": "time_series",
+      "select": [
+        [
+          {
+            "params": [
+              "licensed-feature-counter-used"
+            ],
+            "type": "field"
+          },
+          {
+            "params": [],
+            "type": "last"
+          },
+          {
+            "params": [
+              "1s"
+            ],
+            "type": "derivative"
+          },
+          {
+            "params": [
+              "used"
+            ],
+            "type": "alias"
+          }
+        ]
+      ],
+      "tags": [
+        {
+          "key": "licensed-feature::tag",
+          "operator": "=",
+          "value": "cgnat"
+        },
+        {
+          "condition": "AND",
+          "key": "cluster::tag",
+          "operator": "=~",
+          "value": "/^$cluster$/"
+        }
+      ]
+    }
+  ],
+  "datasource": {
+    "type": "influxdb"
+  },
+  "options": {
+    "tooltip": {
+      "mode": "multi",
+      "sort": "desc",
+      "hideZeros": false
+    },
+    "legend": {
+      "showLegend": true,
+      "displayMode": "list",
+      "placement": "bottom",
+      "calcs": []
+    }
+  }
+}
