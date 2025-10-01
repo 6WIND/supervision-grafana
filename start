@@ -24,7 +24,7 @@ export DOCKER_GID=$(id -g)
 mkdir -p influxdb/data
 
 # Start grafana/influxdb
-docker-compose up -d
+docker compose up -d
 
 # Configure grafana according to provided yaml configuration file
 tools/configure_grafana.py $(realpath $1)
