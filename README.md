@@ -14,7 +14,7 @@ and simple use the start script by giving the configuration file to use.
 
 ```console
 # apt-get update
-# apt-get install docker-compose python3-requests docker.io
+# apt-get install docker-compose-plugin python3-requests docker.io
 $ git clone https://github.com/6WIND/supervision-grafana.git
 $ cd supervision-grafana
 $ ./start tools/confs/vsr-3.8.yaml
@@ -103,7 +103,7 @@ Configuration files can be stored anywhere but only configuration file present i
 How it works
 ============
 
-The start script uses ``docker-compose`` to instanciate the monitoring stack. It then calls [tools/configure_grafana.py](./tools/configure_grafana.py) to upload dashboards and the InfluxDB datasource using the Grafana web API with the provided [conf_file] as argument.
+The start script uses ``docker compose`` (v2) to instanciate the monitoring stack. It then calls [tools/configure_grafana.py](./tools/configure_grafana.py) to upload dashboards and the InfluxDB datasource using the Grafana web API with the provided [conf_file] as argument.
 
 The configuration is located in the provided configuration file.
 
